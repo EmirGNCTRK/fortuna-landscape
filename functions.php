@@ -305,7 +305,7 @@ function fortunalandscape_save_gallery_metabox($post_id) {
 }
 add_action('save_post', 'fortunalandscape_save_gallery_metabox');
 /* ==========================================================================
-   ÖZELLEŞTİRİCİ - FOOTER & SOSYAL MEDYA AYARLARI
+   ÖZELLEŞTİRİCİ - FOOTER & SOSYAL MEDYA (AÇ/KAPAT SWITCH DESTEKLİ)
    ========================================================================== */
 
 function fortunalandscape_footer_customizer($wp_customize) {
@@ -338,22 +338,35 @@ function fortunalandscape_footer_customizer($wp_customize) {
         'type'        => 'text',
     ));
 
-    // Sosyal Medya Linkleri
+    // Sosyal Medya Linkleri & Switch Yapısı
     $socials = array(
-        'instagram' => 'Instagram URL',
-        'facebook'  => 'Facebook URL',
-        'linkedin'  => 'LinkedIn URL',
-        'twitter'   => 'X (Twitter) URL',
-        'pinterest' => 'Pinterest URL',
+        'instagram' => 'Instagram',
+        'facebook'  => 'Facebook',
+        'linkedin'  => 'LinkedIn',
+        'twitter'   => 'X (Twitter)',
+        'pinterest' => 'Pinterest',
     );
 
     foreach ($socials as $key => $label) {
+        
+        // 1. Switch / Checkbox Kontrolü (Görünsün mü?)
+        $wp_customize->add_setting('show_social_' . $key, array(
+            'default'           => true,
+            'sanitize_callback' => 'fortunalandscape_sanitize_checkbox',
+        ));
+        $wp_customize->add_control('show_social_' . $key, array(
+            'label'   => sprintf(__('%s İkonunu Göster', 'fortunalandscape'), $label),
+            'section' => 'footer_section',
+            'type'    => 'checkbox',
+        ));
+
+        // 2. URL Girme Alanı
         $wp_customize->add_setting('social_' . $key, array(
             'default'           => 'https://' . $key . '.com',
             'sanitize_callback' => 'esc_url_raw',
         ));
         $wp_customize->add_control('social_' . $key, array(
-            'label'   => __($label, 'fortunalandscape'),
+            'label'   => sprintf(__('%s Bağlantısı (URL)', 'fortunalandscape'), $label),
             'section' => 'footer_section',
             'type'    => 'url',
         ));
@@ -361,8 +374,7 @@ function fortunalandscape_footer_customizer($wp_customize) {
 }
 add_action('customize_register', 'fortunalandscape_footer_customizer');
 
-// Footer Menü Konumunu Tanımla
-function fortunalandscape_register_footer_menu() {
-    register_nav_menu('footer-menu', __('Footer Menüsü', 'fortunalandscape'));
+// Checkbox Temizleme (Sanitization) Fonksiyonu
+function fortunalandscape_sanitize_checkbox($checked) {
+    return (isset($checked) && $checked === true) ? true : false;
 }
-add_action('after_setup_theme', 'fortunalandscape_register_footer_menu');

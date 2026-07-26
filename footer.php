@@ -43,8 +43,8 @@
                     // Varsayılan Statik Menü (Eğer panelden menü atanmamışsa)
                     echo '<ul>';
                     echo '<li><a href="' . esc_url(home_url('/')) . '">Anasayfa</a></li>';
-                    echo '<li><a href="' . esc_url(home_url('/hakkimizda.html')) . '">Hakkımızda</a></li>';
-                    echo '<li><a href="' . esc_url(home_url('/contact.html')) . '">İletişim</a></li>';
+                    echo '<li><a href="' . esc_url(home_url('/hakkimizda.php')) . '">Hakkımızda</a></li>';
+                    echo '<li><a href="' . esc_url(home_url('/contact.php')) . '">İletişim</a></li>';
                     echo '</ul>';
                 }
                 ?>
@@ -52,35 +52,37 @@
 
             <!-- Sosyal Medya İkon Linkleri -->
             <div class="footer-social">
-                <?php if ($instagram = get_theme_mod('social_instagram', 'https://instagram.com')) : ?>
-                    <a href="<?php echo esc_url($instagram); ?>" target="_blank" rel="noopener noreferrer" class="social-icon instagram" title="Instagram">
+                
+                <?php if (get_theme_mod('show_social_instagram', true)) : ?>
+                    <a href="<?php echo esc_url(get_theme_mod('social_instagram', 'https://instagram.com')); ?>" target="_blank" rel="noopener noreferrer" class="social-icon instagram" title="Instagram">
                         <i class="fa-brands fa-instagram"></i>
                     </a>
                 <?php endif; ?>
 
-                <?php if ($facebook = get_theme_mod('social_facebook', 'https://facebook.com')) : ?>
-                    <a href="<?php echo esc_url($facebook); ?>" target="_blank" rel="noopener noreferrer" class="social-icon facebook" title="Facebook">
+                <?php if (get_theme_mod('show_social_facebook', true)) : ?>
+                    <a href="<?php echo esc_url(get_theme_mod('social_facebook', 'https://facebook.com')); ?>" target="_blank" rel="noopener noreferrer" class="social-icon facebook" title="Facebook">
                         <i class="fa-brands fa-facebook-f"></i>
                     </a>
                 <?php endif; ?>
 
-                <?php if ($linkedin = get_theme_mod('social_linkedin', 'https://linkedin.com')) : ?>
-                    <a href="<?php echo esc_url($linkedin); ?>" target="_blank" rel="noopener noreferrer" class="social-icon linkedin" title="LinkedIn">
+                <?php if (get_theme_mod('show_social_linkedin', true)) : ?>
+                    <a href="<?php echo esc_url(get_theme_mod('social_linkedin', 'https://linkedin.com')); ?>" target="_blank" rel="noopener noreferrer" class="social-icon linkedin" title="LinkedIn">
                         <i class="fa-brands fa-linkedin-in"></i>
                     </a>
                 <?php endif; ?>
 
-                <?php if ($twitter = get_theme_mod('social_twitter', 'https://x.com')) : ?>
-                    <a href="<?php echo esc_url($twitter); ?>" target="_blank" rel="noopener noreferrer" class="social-icon x-twitter" title="X (Twitter)">
+                <?php if (get_theme_mod('show_social_twitter', true)) : ?>
+                    <a href="<?php echo esc_url(get_theme_mod('social_twitter', 'https://x.com')); ?>" target="_blank" rel="noopener noreferrer" class="social-icon x-twitter" title="X (Twitter)">
                         <i class="fa-brands fa-x-twitter"></i>
                     </a>
                 <?php endif; ?>
 
-                <?php if ($pinterest = get_theme_mod('social_pinterest', 'https://pinterest.com')) : ?>
-                    <a href="<?php echo esc_url($pinterest); ?>" target="_blank" rel="noopener noreferrer" class="social-icon pinterest" title="Pinterest">
+                <?php if (get_theme_mod('show_social_pinterest', true)) : ?>
+                    <a href="<?php echo esc_url(get_theme_mod('social_pinterest', 'https://pinterest.com')); ?>" target="_blank" rel="noopener noreferrer" class="social-icon pinterest" title="Pinterest">
                         <i class="fa-brands fa-pinterest-p"></i>
                     </a>
                 <?php endif; ?>
+
             </div>
         </div>
     </footer>
