@@ -193,12 +193,22 @@ $services_title = get_theme_mod('services_main_title', 'Hizmetlerimiz');
             </div>
         </div>
 
-        <div class="why-us-cta">
-            <p><?php echo esc_html(get_theme_mod('why_us_cta_text', 'Hayal ettiğiniz mekânları estetik ve fonksiyonel çözümlerle gerçeğe dönüştürmek için yanınızdayız.')); ?></p>
-            <a href="<?php echo esc_url(get_theme_mod('why_us_btn_link', site_url('/contact.html'))); ?>" class="btn">
-                <?php echo esc_html(get_theme_mod('why_us_btn_text', 'Bizimle İletişime Geçin')); ?>
-            </a>
-        </div>
+        <!-- CTA Bölümü -->
+            <div class="why-us-cta">
+                <p>
+                    <?php echo esc_html(get_theme_mod('why_us_cta_text', 'Hayal ettiğiniz mekânları estetik ve fonksiyonel çözümlerle gerçeğe dönüştürmek için yanınızdayız.')); ?>
+                </p>
+                
+                <!-- Dinamik İletişim Linki -->
+                <?php 
+                // Eğer WordPress paneli Özelleştirici üzerinden özel bir URL tanımlandıysa onu kullanır,
+                // tanımlanmadıysa varsayılan olarak /iletisim/ sayfasına yönlendirir.
+                $contact_url = get_theme_mod('why_us_btn_url', home_url('/iletisim/')); 
+                ?>
+                <a href="<?php echo esc_url($contact_url); ?>" class="btn">
+                    <?php echo esc_html(get_theme_mod('why_us_btn_text', 'Bizimle İletişime Geçin')); ?>
+                </a>
+            </div>
     </div>
 </section>
 <!-- Sağ Alt Sabit WhatsApp Butonu -->
