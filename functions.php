@@ -378,3 +378,38 @@ add_action('customize_register', 'fortunalandscape_footer_customizer');
 function fortunalandscape_sanitize_checkbox($checked) {
     return (isset($checked) && $checked === true) ? true : false;
 }
+/* ==========================================================================
+   ÖZELLEŞTİRİCİ - HAKKIMIZDA SAYFASI AYARLARI
+   ========================================================================== */
+
+function fortunalandscape_about_customizer($wp_customize) {
+    
+    // Hakkımızda Sekmesi
+    $wp_customize->add_section('about_page_section', array(
+        'title'    => __('Hakkımızda Sayfası', 'fortunalandscape'),
+        'priority' => 14,
+    ));
+
+    // Banner Başlığı
+    $wp_customize->add_setting('about_banner_title', array(
+        'default'           => 'Hakkımızda',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('about_banner_title', array(
+        'label'    => __('Banner Başlığı', 'fortunalandscape'),
+        'section'  => 'about_page_section',
+        'type'     => 'text',
+    ));
+
+    // Paragraf Metni
+    $wp_customize->add_setting('about_content_text', array(
+        'default'           => 'Fortuna Landscape olarak; doğayla insanı estetik, fonksiyonel ve sürdürülebilir bir çizgide buluşturma vizyonuyla yola çıktık. Peyzaj mimarlığı ve açık alan tasarımı alanında uzman kadromuzla, her projeye bir sanat eseri titizliğiyle yaklaşıyor, yaşam alanlarınıza ruh ve değer katıyoruz. Modern tasarım anlayışımızı çevreye duyarlı malzemeler ve yenilikçi çözümlerle harmanlayarak, yalnızca bugünün değil geleceğin de ihtiyaçlarına cevap veren zamansız mekanlar kurguluyoruz. Müşteri memnuniyetini ve kaliteyi her zaman odağımıza alarak, hayal ettiğiniz doğal ve estetik yaşam alanlarını gerçeğe dönüştürmek için tutkuyla çalışmaya devam ediyoruz.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+    ));
+    $wp_customize->add_control('about_content_text', array(
+        'label'    => __('Hakkımızda Metni', 'fortunalandscape'),
+        'section'  => 'about_page_section',
+        'type'     => 'textarea',
+    ));
+}
+add_action('customize_register', 'fortunalandscape_about_customizer');
