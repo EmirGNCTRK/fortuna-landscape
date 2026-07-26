@@ -13,16 +13,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
+     <!-- YÜKLEME EKRANI (PRELOADER) -->
+    <div id="preloader">
+        <div class="loader-content">
+            <div class="spinner-wrapper">
+                <div class="spinner"></div>
+                <img src="images/mini logo.jpeg" alt="Fortuna Landscape" class="loader-logo">
+            </div>
+        </div>
+    </div>
 
     <!-- Header / Navigasyon Bölümü -->
     <header>
-        <div class="container">
+        <div class="container header-container">
+            <!-- Logo ve İsim -->
             <a href="index.html" class="logo-container">
-                <img src="logo.jpeg" alt="Fortuna Landscape Logosu" class="site-logo">
+                <img src="images/mini logo.jpeg" alt="Fortuna Landscape Logosu" class="site-logo">
                 <h1 class="logo-text">Fortuna Landscape</h1>
             </a>
-            <nav>
+
+            <!-- Hamburger Menü Butonu (Mobilde Görünür) -->
+            <button class="hamburger-menu" id="hamburgerMenu" aria-label="Menüyü Aç">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <!-- Navigasyon Menüsü -->
+            <nav class="nav-menu" id="navMenu">
                 <ul>
+                    <li><a href="index.html">Anasayfa</a></li>
                     <li><a href="hakkimizda.html">Hakkımızda</a></li>
                     <li><a href="contact.html" class="cta-button">Bize Ulaşın</a></li>
                 </ul>
@@ -52,16 +70,44 @@
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
-    <!-- Footer -->
+    <!-- Footer Bölümü -->
     <footer>
-        <div class="container">
-            <div class="footer-info">
-                <img src="logo.jpeg" alt="Fortuna Landscape Logosu" class="site-logo small">
-                <p>&copy; 2026 Fortuna Landscape. Tüm hakları saklıdır.</p>
+        <div class="container footer-container">
+            <!-- Logo ve Telif Bilgisi -->
+            <div class="footer-brand">
+                <a href="index.html" class="logo-container">
+                    <img src="images/mini logo.jpeg" alt="Fortuna Landscape Logosu" class="site-logo small">
+                    <span class="logo-text">Fortuna Landscape</span>
+                </a>
+                <p class="copyright">&copy; 2026 Fortuna Landscape. Tüm hakları saklıdır.</p>
             </div>
+
+            <!-- Hızlı Menü Linkleri -->
+            <div class="footer-nav">
+                <ul>
+                    <li><a href="index.html">Anasayfa</a></li>
+                    <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                    <li><a href="contact.html">İletişim</a></li>
+                </ul>
+            </div>
+
+            <!-- Sosyal Medya İkon Linkleri (PHP Dinamik Yapısına Uyumlu) -->
             <div class="footer-social">
-                <a href="#">Instagram</a>
-                <a href="#">LinkedIn</a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-icon instagram" title="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-icon facebook" title="Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon linkedin" title="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+                <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="social-icon x-twitter" title="X (Twitter)">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </a>
+                <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" class="social-icon pinterest" title="Pinterest">
+                    <i class="fa-brands fa-pinterest-p"></i>
+                </a>
             </div>
         </div>
     </footer>

@@ -13,16 +13,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
+    <!-- YÜKLEME EKRANI (PRELOADER) -->
+    <div id="preloader">
+        <div class="loader-content">
+            <div class="spinner-wrapper">
+                <div class="spinner"></div>
+                <img src="images/mini logo.jpeg" alt="Fortuna Landscape" class="loader-logo">
+            </div>
+        </div>
+    </div>
 
     <!-- Header / Navigasyon Bölümü -->
     <header>
-        <div class="container">
+        <div class="container header-container">
+            <!-- Logo ve İsim -->
             <a href="index.html" class="logo-container">
                 <img src="images/mini logo.jpeg" alt="Fortuna Landscape Logosu" class="site-logo">
                 <h1 class="logo-text">Fortuna Landscape</h1>
             </a>
-            <nav>
+
+            <!-- Hamburger Menü Butonu (Mobilde Görünür) -->
+            <button class="hamburger-menu" id="hamburgerMenu" aria-label="Menüyü Aç">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <!-- Navigasyon Menüsü -->
+            <nav class="nav-menu" id="navMenu">
                 <ul>
+                    <li><a href="index.html">Anasayfa</a></li>
                     <li><a href="hakkimizda.html">Hakkımızda</a></li>
                     <li><a href="contact.html" class="cta-button">Bize Ulaşın</a></li>
                 </ul>
@@ -40,49 +58,68 @@
         </div>
     </section>
 
-<!-- Projeler Bölümü -->
-    <section id="projemiz" class="projects">
+    <!-- Projeler Bölümü -->
+    <section class="projects" id="projects">
         <div class="container">
-            <h3 class="section-title">En Son Projelerimiz</h3>
-            <div class="projects-grid">
-                
-                <!-- Proje Kartı 1 -->
-                <div class="project-card" onclick="openGallery([
-                    'https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=1000',
-                    'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=1000',
-                    'https://images.unsplash.com/photo-1557429287-b2e26467fc2b?q=80&w=1000'
-                ])">
-                    <img src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=600" alt="Proje 1">
-                    <div class="project-info">
-                        <h4>Şehir Vahası, İstanbul</h4>
-                        <p>Galeriyi İncele &rarr;</p>
+            <h2 class="section-title">Projelerimiz</h2>
+            
+            <div class="projects-slider-container">
+                <!-- Sol Ok Butonu -->
+                <button class="project-slider-btn prev-project-btn" id="prevProjectBtn" aria-label="Önceki Projeler">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+
+                <!-- Yatay Kayan Proje Listesi -->
+                <div class="projects-track" id="projectsTrack">
+                    
+                    <!-- Proje 1 -->
+                    <div class="project-card" onclick="openGallery([
+                        'https://images.unsplash.com/photo-1557429287-b2e26467fc2b?q=80&w=1200',
+                        'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=1200'
+                    ])">
+                        <img src="https://images.unsplash.com/photo-1557429287-b2e26467fc2b?q=80&w=800&auto=format&fit=crop" alt="Proje 1">
+                        <div class="project-info">
+                            <h4>Villa Peyzaj Tasarımı</h4>
+                        </div>
                     </div>
+
+                    <!-- Proje 2 -->
+                    <div class="project-card" onclick="openGallery([
+                        'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=1200',
+                        'https://images.unsplash.com/photo-1598902108854-10e335adac99?q=80&w=1200'
+                    ])">
+                        <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=800&auto=format&fit=crop" alt="Proje 2">
+                        <div class="project-info">
+                            <h4>Modern Bahçe Düzenlemesi</h4>
+                        </div>
+                    </div>
+
+                    <!-- Proje 3 -->
+                    <div class="project-card" onclick="openGallery([
+                        'https://images.unsplash.com/photo-1598902108854-10e335adac99?q=80&w=1200'
+                    ])">
+                        <img src="https://images.unsplash.com/photo-1598902108854-10e335adac99?q=80&w=800&auto=format&fit=crop" alt="Proje 3">
+                        <div class="project-info">
+                            <h4>Site İçi Peyzaj Uygulaması</h4>
+                        </div>
+                    </div>
+
+                    <!-- Proje 4 -->
+                    <div class="project-card" onclick="openGallery([
+                        'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1200'
+                    ])">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800&auto=format&fit=crop" alt="Proje 4">
+                        <div class="project-info">
+                            <h4>Otel Bahçe Konsepti</h4>
+                        </div>
+                    </div>
+
                 </div>
 
-                <!-- Proje Kartı 2 -->
-                <div class="project-card" onclick="openGallery([
-                    'https://images.unsplash.com/photo-1534012117180-2a818c39d892?q=80&w=1000',
-                    'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1000'
-                ])">
-                    <img src="https://images.unsplash.com/photo-1534012117180-2a818c39d892?q=80&w=600" alt="Proje 2">
-                    <div class="project-info">
-                        <h4>Akdeniz Bahçesi, Antalya</h4>
-                        <p>Galeriyi İncele &rarr;</p>
-                    </div>
-                </div>
-
-                <!-- Proje Kartı 3 -->
-                <div class="project-card" onclick="openGallery([
-                    'https://images.unsplash.com/photo-1491951110014-9961633512a8?q=80&w=1000',
-                    'https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?q=80&w=1000'
-                ])">
-                    <img src="https://images.unsplash.com/photo-1491951110014-9961633512a8?q=80&w=600" alt="Proje 3">
-                    <div class="project-info">
-                        <h4>Korunaklı Avlu, İzmir</h4>
-                        <p>Galeriyi İncele &rarr;</p>
-                    </div>
-                </div>
-
+                <!-- Sağ Ok Butonu -->
+                <button class="project-slider-btn next-project-btn" id="nextProjectBtn" aria-label="Sonraki Projeler">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
             </div>
         </div>
     </section>
@@ -98,13 +135,14 @@
 
                 <!-- Orta Ana Görsel ve Oklar -->
                 <div class="main-image-container">
-                    <button class="modal-arrow prev-arrow" onclick="changeImage(-1)">&#10094;</button>
+                    <button class="modal-arrow prev-arrow" onclick="changeImage(-1, event)">&#10094;</button>
                     <img id="modalMainImg" src="" alt="Proje Görseli">
-                    <button class="modal-arrow next-arrow" onclick="changeImage(1)">&#10095;</button>
+                    <button class="modal-arrow next-arrow" onclick="changeImage(1, event)">&#10095;</button>
                 </div>
             </div>
         </div>
     </div>
+
     <!-- Hizmetler Bölümü (Dönen Slider) -->
     <section id="hizmetler" class="services">
         <div class="container">
@@ -168,21 +206,18 @@
             <h3 class="section-title">Neden Bizi Tercih Etmelisiniz?</h3>
             
             <div class="why-us-grid">
-                <!-- 1. Vurgu -->
                 <div class="why-us-card">
                     <div class="why-us-number">01</div>
                     <h4>Özgün ve İşlevsel Tasarımlar</h4>
-                    <p>Müşterilerimize estetik, işlevsellik ve sürdürülebilirliği bir araya getiren özgün tasarım çözümleri sunuyoruz. Her projeye titizlikle yaklaşarak, ihtiyaçlara özel ve profesyonel çözümler geliştiriyoruz.</p>
+                    <p>Müşterilerimize estetik, işlevsellik ve sürdürülebilirliği bir araya getiren özgün tasarım çözümleri sunuyoruz.</p>
                 </div>
 
-                <!-- 2. Vurgu -->
                 <div class="why-us-card">
                     <div class="why-us-number">02</div>
                     <h4>Kalite ve Güven</h4>
                     <p>Kaliteli malzeme seçimi, zamanında teslim anlayışı ve müşteri memnuniyetini esas alan hizmet yaklaşımımızla güvenilir projelere imza atıyoruz.</p>
                 </div>
 
-                <!-- 3. Vurgu -->
                 <div class="why-us-card">
                     <div class="why-us-number">03</div>
                     <h4>Geleceğe Değer Katan Yaklaşım</h4>
@@ -190,31 +225,59 @@
                 </div>
             </div>
 
-            <!-- Çağrı Metni (CTA) Kutusu -->
             <div class="why-us-cta">
-                <p>Hayal ettiğiniz mekânları estetik ve fonksiyonel çözümlerle gerçeğe dönüştürmek için yanınızdayız. Siz de yaşam alanlarınızı profesyonel bir dokunuşla yeniden şekillendirmek için bizimle iletişime geçebilirsiniz.</p>
+                <p>Hayal ettiğiniz mekânları estetik ve fonksiyonel çözümlerle gerçeğe dönüştürmek için yanınızdayız.</p>
                 <a href="contact.html" class="btn">Bizimle İletişime Geçin</a>
             </div>
         </div>
     </section>
-<!-- Sağ Alt Sabit WhatsApp Butonu -->
+
+    <!-- Sağ Alt Sabit WhatsApp Butonu -->
     <a href="https://wa.me/905000000000?text=Merhaba,%20projem%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." class="fixed-whatsapp" target="_blank" title="WhatsApp ile İletişime Geçin">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
-    <!-- Footer -->
+
+    <!-- Footer Bölümü -->
     <footer>
-        <div class="container">
-            <div class="footer-info">
-                <img src="logo.jpeg" alt="Fortuna Landscape Logosu" class="site-logo small">
-                <p>&copy; 2026 Fortuna Landscape. Tüm hakları saklıdır.</p>
+        <div class="container footer-container">
+            <!-- Logo ve Telif Bilgisi -->
+            <div class="footer-brand">
+                <a href="index.html" class="logo-container">
+                    <img src="images/mini logo.jpeg" alt="Fortuna Landscape Logosu" class="site-logo small">
+                    <span class="logo-text">Fortuna Landscape</span>
+                </a>
+                <p class="copyright">&copy; 2026 Fortuna Landscape. Tüm hakları saklıdır.</p>
             </div>
+
+            <!-- Hızlı Menü Linkleri -->
+            <div class="footer-nav">
+                <ul>
+                    <li><a href="index.html">Anasayfa</a></li>
+                    <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                    <li><a href="contact.html">İletişim</a></li>
+                </ul>
+            </div>
+
+            <!-- Sosyal Medya İkon Linkleri (PHP Dinamik Yapısına Uyumlu) -->
             <div class="footer-social">
-                <a href="#">Instagram</a>
-                <a href="#">LinkedIn</a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-icon instagram" title="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-icon facebook" title="Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon linkedin" title="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+                <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="social-icon x-twitter" title="X (Twitter)">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </a>
+                <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" class="social-icon pinterest" title="Pinterest">
+                    <i class="fa-brands fa-pinterest-p"></i>
+                </a>
             </div>
         </div>
     </footer>
-
     <script src="app.js"></script>
 </body>
 </html>
