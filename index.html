@@ -5,27 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fortuna Landscape | Modern Peyzaj Mimarlığı</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Modern tipografi için Google Fonts ekliyoruz (Montserrat ve Lora) -->
+    <!-- Google Fonts (Montserrat ve Lora) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    
     <!-- Header / Navigasyon Bölümü -->
     <header>
         <div class="container">
-            <a href="#" class="logo-container">
+            <a href="index.html" class="logo-container">
                 <img src="images/mini logo.jpeg" alt="Fortuna Landscape Logosu" class="site-logo">
                 <h1 class="logo-text">Fortuna Landscape</h1>
             </a>
             <nav>
                 <ul>
-                    <li><a href="#projemiz">Projelerimiz</a></li>
-                    <li><a href="#hizmetler">Hizmetlerimiz</a></li>
-                    <li><a href="#hakimizda">Hakkımızda</a></li>
-                    <li><a href="#iletisim" class="cta-button">Bize Ulaşın</a></li>
+                    <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                    <li><a href="contact.html" class="cta-button">Bize Ulaşın</a></li>
                 </ul>
             </nav>
         </div>
@@ -37,44 +34,76 @@
         <div class="container hero-content">
             <h2>Doğayla Uyumlu, Estetik Mekanlar Tasarlıyoruz.</h2>
             <p>Fortuna Landscape olarak, yaşam alanlarınızı yeşille buluşturuyor, modern tasarımlarımızla mekanlara ruh katıyoruz.</p>
-            <a href="#projemiz" class="btn">Keşfedin</a>
+            <a href="#neden-biz" class="btn">Keşfedin</a>
         </div>
     </section>
 
-    <!-- Projeler Bölümü -->
+<!-- Projeler Bölümü -->
     <section id="projemiz" class="projects">
         <div class="container">
             <h3 class="section-title">En Son Projelerimiz</h3>
             <div class="projects-grid">
+                
                 <!-- Proje Kartı 1 -->
-                <div class="project-card">
-                    <img src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=600&auto=format&fit=crop" alt="Proje 1">
+                <div class="project-card" onclick="openGallery([
+                    'https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=1000',
+                    'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=1000',
+                    'https://images.unsplash.com/photo-1557429287-b2e26467fc2b?q=80&w=1000'
+                ])">
+                    <img src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=600" alt="Proje 1">
                     <div class="project-info">
                         <h4>Şehir Vahası, İstanbul</h4>
-                        <p>Modern şehir yaşamına yeşil bir dokunuş.</p>
+                        <p>Galeriyi İncele &rarr;</p>
                     </div>
                 </div>
+
                 <!-- Proje Kartı 2 -->
-                <div class="project-card">
-                    <img src="https://images.unsplash.com/photo-1534012117180-2a818c39d892?q=80&w=600&auto=format&fit=crop" alt="Proje 2">
+                <div class="project-card" onclick="openGallery([
+                    'https://images.unsplash.com/photo-1534012117180-2a818c39d892?q=80&w=1000',
+                    'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1000'
+                ])">
+                    <img src="https://images.unsplash.com/photo-1534012117180-2a818c39d892?q=80&w=600" alt="Proje 2">
                     <div class="project-info">
                         <h4>Akdeniz Bahçesi, Antalya</h4>
-                        <p>Doğal taş ve bitki örtüsünün uyumu.</p>
+                        <p>Galeriyi İncele &rarr;</p>
                     </div>
                 </div>
+
                 <!-- Proje Kartı 3 -->
-                <div class="project-card">
-                    <img src="https://images.unsplash.com/photo-1491951110014-9961633512a8?q=80&w=600&auto=format&fit=crop" alt="Proje 3">
+                <div class="project-card" onclick="openGallery([
+                    'https://images.unsplash.com/photo-1491951110014-9961633512a8?q=80&w=1000',
+                    'https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?q=80&w=1000'
+                ])">
+                    <img src="https://images.unsplash.com/photo-1491951110014-9961633512a8?q=80&w=600" alt="Proje 3">
                     <div class="project-info">
                         <h4>Korunaklı Avlu, İzmir</h4>
-                        <p>Minimalist tasarım ile huzurlu bir köşe.</p>
+                        <p>Galeriyi İncele &rarr;</p>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Hizmetler Bölümü -->
+    <!-- Galeri Modal (Açılır Pencere) -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeGallery()">&times;</span>
+            
+            <div class="modal-body">
+                <!-- Sol Küçük Fotoğraflar (Thumbnails) -->
+                <div class="thumbnail-list" id="thumbnailList"></div>
+
+                <!-- Orta Ana Görsel ve Oklar -->
+                <div class="main-image-container">
+                    <button class="modal-arrow prev-arrow" onclick="changeImage(-1)">&#10094;</button>
+                    <img id="modalMainImg" src="" alt="Proje Görseli">
+                    <button class="modal-arrow next-arrow" onclick="changeImage(1)">&#10095;</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Hizmetler Bölümü (Dönen Slider) -->
     <section id="hizmetler" class="services">
         <div class="container">
             <h3 class="section-title">Hizmetlerimiz</h3>
@@ -130,27 +159,28 @@
             </div>
         </div>
     </section>
- <!-- Neden Bizi Tercih Etmelisiniz? Bölümü -->
+
+    <!-- Neden Bizi Tercih Etmelisiniz? Bölümü -->
     <section id="neden-biz" class="why-us">
         <div class="container">
             <h3 class="section-title">Neden Bizi Tercih Etmelisiniz?</h3>
             
             <div class="why-us-grid">
-                <!-- 1. Vurgu: Özgün Tasarım & Profesyonellik -->
+                <!-- 1. Vurgu -->
                 <div class="why-us-card">
                     <div class="why-us-number">01</div>
                     <h4>Özgün ve İşlevsel Tasarımlar</h4>
                     <p>Müşterilerimize estetik, işlevsellik ve sürdürülebilirliği bir araya getiren özgün tasarım çözümleri sunuyoruz. Her projeye titizlikle yaklaşarak, ihtiyaçlara özel ve profesyonel çözümler geliştiriyoruz.</p>
                 </div>
 
-                <!-- 2. Vurgu: Kalite & Zamanında Teslim -->
+                <!-- 2. Vurgu -->
                 <div class="why-us-card">
                     <div class="why-us-number">02</div>
                     <h4>Kalite ve Güven</h4>
                     <p>Kaliteli malzeme seçimi, zamanında teslim anlayışı ve müşteri memnuniyetini esas alan hizmet yaklaşımımızla güvenilir projelere imza atıyoruz.</p>
                 </div>
 
-                <!-- 3. Vurgu: Sürdürülebilirlik & Gelecek -->
+                <!-- 3. Vurgu -->
                 <div class="why-us-card">
                     <div class="why-us-number">03</div>
                     <h4>Geleceğe Değer Katan Yaklaşım</h4>
@@ -158,24 +188,11 @@
                 </div>
             </div>
 
-            <!-- Çağrı Metni (CTA) -->
+            <!-- Çağrı Metni (CTA) Kutusu -->
             <div class="why-us-cta">
                 <p>Hayal ettiğiniz mekânları estetik ve fonksiyonel çözümlerle gerçeğe dönüştürmek için yanınızdayız. Siz de yaşam alanlarınızı profesyonel bir dokunuşla yeniden şekillendirmek için bizimle iletişime geçebilirsiniz.</p>
-                <a href="#iletisim" class="btn">Bizimle İletişime Geçin</a>
+                <a href="contact.html" class="btn">Bizimle İletişime Geçin</a>
             </div>
-        </div>
-    </section>
-    <!-- İletişim Bölümü -->
-    <section id="iletisim" class="contact">
-        <div class="container">
-            <h3 class="section-title">İletişime Geçin</h3>
-            <p>Projeleriniz hakkında konuşmak veya bilgi almak için formu doldurun.</p>
-            <form id="contact-form">
-                <input type="text" name="ad" placeholder="Adınız Soyadınız" required>
-                <input type="email" name="email" placeholder="E-posta Adresiniz" required>
-                <textarea name="mesaj" placeholder="Mesajınız" rows="5" required></textarea>
-                <button type="submit" class="btn">Gönder</button>
-            </form>
         </div>
     </section>
 
@@ -184,7 +201,7 @@
         <div class="container">
             <div class="footer-info">
                 <img src="logo.jpeg" alt="Fortuna Landscape Logosu" class="site-logo small">
-                <p>&copy; 2024 Fortuna Landscape. Tüm hakları saklıdır.</p>
+                <p>&copy; 2026 Fortuna Landscape. Tüm hakları saklıdır.</p>
             </div>
             <div class="footer-social">
                 <a href="#">Instagram</a>

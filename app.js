@@ -99,3 +99,73 @@ if (track && prevBtn && nextBtn) {
     // Başlangıçta otomatği çalıştır
     startAutoScroll();
 }
+// --- Modal Galeri Mantığı ---
+let currentImages = [];
+let currentIndex = 0;
+
+function openGallery(images) {
+    currentImages = images;
+    currentIndex = 0;
+    
+    const modal = document.getElementById('projectModal');
+    const thumbList = document.getElementById('thumbnailList');
+    
+    // Küçük resimleri yükle
+    thumbList.innerHTML = '';
+    images.forEach((imgUrl, index) => {
+        const thumb = document.createElement('img');
+        thumb.src = imgUrl;
+        thumb.classList.add('thumb-img');
+        if (index === 0) thumb.classList.add('active');
+        
+        thumb.onclick = () => setImage(index);
+        thumbList.appendChild(thumb);
+    });
+
+    // Ana resmi ayarla
+    updateMainImage();
+    
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden'; // Arka plan kaymasını engelle
+}
+
+function closeGallery() {
+    const modal = document.getElementById('projectModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+function setImage(index) {
+    currentIndex = index;
+    updateMainImage();
+}
+
+function changeImage(direction) {
+    currentIndex += direction;
+    if (currentIndex < 0) currentIndex = currentImages.length - 1;
+    if (currentIndex >= currentImages.length) currentIndex = 0;
+    updateMainImage();
+}
+
+function updateMainImage() {
+    const mainImg = document.getElementById('modalMainImg');
+    mainImg.src = currentImages[currentIndex];
+
+    // Thumbnail aktiflik sınıfını güncelle
+    const thumbs = document.querySelectorAll('.thumb-img');
+    thumbs.forEach((thumb, index) => {
+        if (index === currentIndex) {
+            thumb.classList.add('active');
+        } else {
+            thumb.classList.remove('active');
+        }
+    });
+}
+
+// Modal dışına tıklayınca kapatma
+window.onclick = function(event) {
+    const modal = document.getElementById('projectModal');
+    if (event.target === modal) {
+        closeGallery();
+    }
+};

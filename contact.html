@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İletişim | Fortuna Landscape</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header / Navigasyon Bölümü -->
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo-container">
+                <img src="logo.jpeg" alt="Fortuna Landscape Logosu" class="site-logo">
+                <h1 class="logo-text">Fortuna Landscape</h1>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html#projemiz">Projelerimiz</a></li>
+                    <li><a href="index.html#hizmetler">Hizmetlerimiz</a></li>
+                    <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                    <li><a href="contact.html" class="cta-button">Bize Ulaşın</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Sayfa Başlığı (Header Altı Banner) -->
+    <section class="page-banner">
+        <div class="container">
+            <h2>İletişim</h2>
+            <p>Hayalinizdeki peyzaj projesini birlikte hayata geçirelim.</p>
+        </div>
+    </section>
+
+    <!-- İletişim İçerik Bölümü -->
+    <section class="contact-page">
+        <div class="container">
+            <div class="contact-wrapper">
+                
+                <!-- Sol Taraf: İletişim Bilgileri -->
+                <div class="contact-info-card">
+                    <h3>Bizimle İletişime Geçin</h3>
+                    <p>Projeleriniz, danışmanlık talepleriniz veya sorularınız için aşağıdaki bilgilerden bize ulaşabilir ya da iletişim formunu doldurabilirsiniz.</p>
+                    
+                    <div class="info-items">
+                        <div class="info-item">
+                            <span class="info-icon">📍</span>
+                            <div>
+                                <h4>Adres</h4>
+                                <p>Atatürk Mah. Mimarlık Cad. No:12, İzmir / Türkiye</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <span class="info-icon">📞</span>
+                            <div>
+                                <h4>Telefon</h4>
+                                <p>+90 (232) 000 00 00</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <span class="info-icon">✉️</span>
+                            <div>
+                                <h4>E-posta</h4>
+                                <p>info@fortunalandscape.com</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <span class="info-icon">⏰</span>
+                            <div>
+                                <h4>Çalışma Saatleri</h4>
+                                <p>Pazartesi - Cumartesi: 09:00 - 18:00<br>Pazar: Kapalı</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sağ Taraf: İletişim Formu -->
+                <div class="contact-form-card">
+                    <h3>Mesaj Gönderin</h3>
+                    <form id="page-contact-form">
+                        <div class="form-group">
+                            <label for="name">Adınız Soyadınız</label>
+                            <input type="text" id="name" name="ad" placeholder="Örn: Ahmet Yılmaz" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">E-posta Adresiniz</label>
+                            <input type="email" id="email" name="email" placeholder="Örn: ahmet@example.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Telefon Numaranız</label>
+                            <input type="tel" id="phone" name="phone" placeholder="05XX XXX XX XX">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Mesajınız</label>
+                            <textarea id="message" name="mesaj" rows="5" placeholder="Projeniz hakkında kısa bilgi verin..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn">Gönder</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Harita Bölümü Simülasyonu -->
+    <section class="map-section">
+        <div class="container">
+            <div class="map-placeholder">
+                <p>📍 Google Maps Konumu Burada Yer Alacak</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-info">
+                <img src="logo.jpeg" alt="Fortuna Landscape Logosu" class="site-logo small">
+                <p>&copy; 2026 Fortuna Landscape. Tüm hakları saklıdır.</p>
+            </div>
+            <div class="footer-social">
+                <a href="#">Instagram</a>
+                <a href="#">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
