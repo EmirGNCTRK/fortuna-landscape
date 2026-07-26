@@ -163,38 +163,54 @@ $services_title = get_theme_mod('services_main_title', 'Hizmetlerimiz');
         </div>
     </div>
 </section>
-<!-- Neden Bizi Tercih Etmelisiniz? Bölümü -->
-<section id="neden-biz" class="why-us">
-    <div class="container">
-        <h3 class="section-title">Neden Bizi Tercih Etmelisiniz?</h3>
+<!-- Neden Bizi Tercih Etmelisiniz Bölümü -->
+<section id="neden-biz" class="why-choose-us" style="padding: 60px 0; background-color: #f9f9f9;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 15px;">
         
-        <div class="why-us-grid">
-            <div class="why-us-card">
-                <div class="why-us-number">01</div>
-                <h4>Özgün ve İşlevsel Tasarımlar</h4>
-                <p>Müşterilerimize estetik, işlevsellik ve sürdürülebilirliği bir araya getiren özgün tasarım çözümleri sunuyoruz.</p>
-            </div>
-
-            <div class="why-us-card">
-                <div class="why-us-number">02</div>
-                <h4>Kalite ve Güven</h4>
-                <p>Kaliteli malzeme seçimi, zamanında teslim anlayışı ve müşteri memnuniyetini esas alan hizmet yaklaşımımızla güvenilir projelere imza atıyoruz.</p>
-            </div>
-
-            <div class="why-us-card">
-                <div class="why-us-number">03</div>
-                <h4>Geleceğe Değer Katan Yaklaşım</h4>
-                <p>Doğaya duyarlı ve sürdürülebilir tasarım ilkelerini benimseyerek, yalnızca bugünün ihtiyaçlarını karşılayan değil, geleceğe değer katan yaşam alanları oluşturmayı hedefliyoruz.</p>
-            </div>
+        <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+            <h2 style="font-size: 2.2rem; color: #2c3e50; margin-bottom: 10px;">
+                <?php echo esc_html(get_theme_mod('why_us_title', 'Neden Bizi Tercih Etmelisiniz?')); ?>
+            </h2>
+            <p style="font-size: 1.1rem; color: #7f8c8d; max-width: 700px; margin: 0 auto;">
+                <?php echo esc_html(get_theme_mod('why_us_subtitle', 'Yılların getirdiği tecrübe ve doğaya olan tutkumuzla yaşam alanlarınızı dönüştürüyoruz.')); ?>
+            </p>
         </div>
 
-        <div class="why-us-cta">
-            <p>Hayal ettiğiniz mekânları estetik ve fonksiyonel çözümlerle gerçeğe dönüştürmek için yanınızdayız.</p>
-            <a href="<?php echo esc_url(site_url('/contact')); ?>" class="btn">Bizimle İletişime Geçin</a>
+        <div class="why-us-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+            
+            <!-- Madde 1 -->
+            <div class="why-us-card" style="background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                <h3 style="color: #27ae60; margin-bottom: 10px; font-size: 1.3rem;">
+                    <?php echo esc_html(get_theme_mod('why_us_item1_title', 'Uzman Kadro')); ?>
+                </h3>
+                <p style="color: #555; line-height: 1.6;">
+                    <?php echo esc_html(get_theme_mod('why_us_item1_desc', 'Alanında deneyimli peyzaj mimarları ve uygulama ekibimizle profesyonel hizmet sunuyoruz.')); ?>
+                </p>
+            </div>
+
+            <!-- Madde 2 -->
+            <div class="why-us-card" style="background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                <h3 style="color: #27ae60; margin-bottom: 10px; font-size: 1.3rem;">
+                    <?php echo esc_html(get_theme_mod('why_us_item2_title', 'Kaliteli Malzeme')); ?>
+                </h3>
+                <p style="color: #555; line-height: 1.6;">
+                    <?php echo esc_html(get_theme_mod('why_us_item2_desc', 'Projelerimizde sadece en dayanıklı, iklime uygun bitki ve yapı malzemelerini kullanıyoruz.')); ?>
+                </p>
+            </div>
+
+            <!-- Madde 3 -->
+            <div class="why-us-card" style="background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                <h3 style="color: #27ae60; margin-bottom: 10px; font-size: 1.3rem;">
+                    <?php echo esc_html(get_theme_mod('why_us_item3_title', 'Zamanında Teslim')); ?>
+                </h3>
+                <p style="color: #555; line-height: 1.6;">
+                    <?php echo esc_html(get_theme_mod('why_us_item3_desc', 'Belirlenen takvime sadık kalarak projelerinizi eksiksiz ve zamanında teslim ediyoruz.')); ?>
+                </p>
+            </div>
+
         </div>
     </div>
 </section>
-
 <!-- Sağ Alt Sabit WhatsApp Butonu -->
 <a href="https://wa.me/905000000000?text=Merhaba,%20projem%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." class="fixed-whatsapp" target="_blank" title="WhatsApp ile İletişime Geçin">
     <i class="fa-brands fa-whatsapp"></i>

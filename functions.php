@@ -66,6 +66,62 @@ function fortunalandscape_customizer($wp_customize) {
     $wp_customize->add_control('services_main_title', array('label' => __('Bölüm Başlığı', 'fortunalandscape'), 'section' => 'services_section', 'type' => 'text'));
 }
 add_action('customize_register', 'fortunalandscape_customizer');
+/* ==========================================================================
+   TEMA ÖZELLEŞTİRİCİ (CUSTOMIZER) - "NEDEN BİZİ TERCİH ETMELİSİNİZ"
+   ========================================================================== */
+
+function fortunalandscape_why_us_customizer($wp_customize) {
+    
+    // "Neden Bizi Tercih Etmelisiniz?" Sekmesi
+    $wp_customize->add_section('why_us_section', array(
+        'title'    => __('Neden Bizi Tercih Etmelisiniz?', 'fortunalandscape'),
+        'priority' => 12,
+    ));
+
+    // 1. Ana Başlık
+    $wp_customize->add_setting('why_us_title', array(
+        'default'           => 'Neden Bizi Tercih Etmelisiniz?',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('why_us_title', array(
+        'label'    => __('Ana Başlık', 'fortunalandscape'),
+        'section'  => 'why_us_section',
+        'type'     => 'text',
+    ));
+
+    // 2. Alt Açıklama Metni
+    $wp_customize->add_setting('why_us_subtitle', array(
+        'default'           => 'Yılların getirdiği tecrübe ve doğaya olan tutkumuzla yaşam alanlarınızı dönüştürüyoruz.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+    ));
+    $wp_customize->add_control('why_us_subtitle', array(
+        'label'    => __('Alt Açıklama Metni', 'fortunalandscape'),
+        'section'  => 'why_us_section',
+        'type'     => 'textarea',
+    ));
+
+    // Madde 1 - Başlık & Metin
+    $wp_customize->add_setting('why_us_item1_title', array('default' => 'Uzman Kadro', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('why_us_item1_title', array('label' => __('1. Madde Başlığı', 'fortunalandscape'), 'section' => 'why_us_section', 'type' => 'text'));
+
+    $wp_customize->add_setting('why_us_item1_desc', array('default' => 'Alanında deneyimli peyzaj mimarları ve uygulama ekibimizle profesyonel hizmet sunuyoruz.', 'sanitize_callback' => 'sanitize_textarea_field'));
+    $wp_customize->add_control('why_us_item1_desc', array('label' => __('1. Madde Açıklaması', 'fortunalandscape'), 'section' => 'why_us_section', 'type' => 'textarea'));
+
+    // Madde 2 - Başlık & Metin
+    $wp_customize->add_setting('why_us_item2_title', array('default' => 'Kaliteli Malzeme', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('why_us_item2_title', array('label' => __('2. Madde Başlığı', 'fortunalandscape'), 'section' => 'why_us_section', 'type' => 'text'));
+
+    $wp_customize->add_setting('why_us_item2_desc', array('default' => 'Projelerimizde sadece en dayanıklı, iklime uygun bitki ve yapı malzemelerini kullanıyoruz.', 'sanitize_callback' => 'sanitize_textarea_field'));
+    $wp_customize->add_control('why_us_item2_desc', array('label' => __('2. Madde Açıklaması', 'fortunalandscape'), 'section' => 'why_us_section', 'type' => 'textarea'));
+
+    // Madde 3 - Başlık & Metin
+    $wp_customize->add_setting('why_us_item3_title', array('default' => 'Zamanında Teslim', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('why_us_item3_title', array('label' => __('3. Madde Başlığı', 'fortunalandscape'), 'section' => 'why_us_section', 'type' => 'text'));
+
+    $wp_customize->add_setting('why_us_item3_desc', array('default' => 'Belirlenen takvime sadık kalarak projelerinizi eksiksiz ve zamanında teslim ediyoruz.', 'sanitize_callback' => 'sanitize_textarea_field'));
+    $wp_customize->add_control('why_us_item3_desc', array('label' => __('3. Madde Açıklaması', 'fortunalandscape'), 'section' => 'why_us_section', 'type' => 'textarea'));
+}
+add_action('customize_register', 'fortunalandscape_why_us_customizer');
 
 
 /* ==========================================================================
