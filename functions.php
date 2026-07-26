@@ -304,3 +304,65 @@ function fortunalandscape_save_gallery_metabox($post_id) {
     }
 }
 add_action('save_post', 'fortunalandscape_save_gallery_metabox');
+/* ==========================================================================
+   ÖZELLEŞTİRİCİ - FOOTER & SOSYAL MEDYA AYARLARI
+   ========================================================================== */
+
+function fortunalandscape_footer_customizer($wp_customize) {
+    
+    // Footer Sekmesi
+    $wp_customize->add_section('footer_section', array(
+        'title'    => __('Footer & Sosyal Medya', 'fortunalandscape'),
+        'priority' => 13,
+    ));
+
+    // Telif Metni
+    $wp_customize->add_setting('footer_copyright', array(
+        'default'           => 'Fortuna Landscape. Tüm hakları saklıdır.',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('footer_copyright', array(
+        'label'    => __('Telif Hakkı Metni', 'fortunalandscape'),
+        'section'  => 'footer_section',
+        'type'     => 'text',
+    ));
+
+    // WhatsApp Telefon Numarası
+    $wp_customize->add_setting('footer_whatsapp_phone', array(
+        'default'           => '905000000000',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('footer_whatsapp_phone', array(
+        'label'       => __('WhatsApp Numarası (Ülke kodlu, örn: 905321234567)', 'fortunalandscape'),
+        'section'     => 'footer_section',
+        'type'        => 'text',
+    ));
+
+    // Sosyal Medya Linkleri
+    $socials = array(
+        'instagram' => 'Instagram URL',
+        'facebook'  => 'Facebook URL',
+        'linkedin'  => 'LinkedIn URL',
+        'twitter'   => 'X (Twitter) URL',
+        'pinterest' => 'Pinterest URL',
+    );
+
+    foreach ($socials as $key => $label) {
+        $wp_customize->add_setting('social_' . $key, array(
+            'default'           => 'https://' . $key . '.com',
+            'sanitize_callback' => 'esc_url_raw',
+        ));
+        $wp_customize->add_control('social_' . $key, array(
+            'label'   => __($label, 'fortunalandscape'),
+            'section' => 'footer_section',
+            'type'    => 'url',
+        ));
+    }
+}
+add_action('customize_register', 'fortunalandscape_footer_customizer');
+
+// Footer Menü Konumunu Tanımla
+function fortunalandscape_register_footer_menu() {
+    register_nav_menu('footer-menu', __('Footer Menüsü', 'fortunalandscape'));
+}
+add_action('after_setup_theme', 'fortunalandscape_register_footer_menu');
