@@ -56,6 +56,7 @@ h1, h2, h3, h4 {
     font-family: var(--font-heading);
     font-weight: 700;
 }
+
 /* --- Header Stilleri --- */
 header {
     background-color: #F8F1E9; /* İstediğiniz krem/açık ton */
@@ -65,7 +66,7 @@ header {
     width: 100%;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* Şık hafif bir alt çizgi */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 header .container {
@@ -81,7 +82,7 @@ header .container {
 }
 
 .site-logo {
-    height: 60px; /* Logonun boyutu */
+    height: 60px;
 }
 
 .site-logo.small {
@@ -132,14 +133,14 @@ nav a:hover:not(.cta-button) {
 /* --- Hero Stilleri --- */
 .hero {
     height: 100vh;
-    background-image: url('https://images.unsplash.com/photo-1557429287-b2e26467fc2b?q=80&w=2000&auto=format&fit=crop'); /* Örnek peyzaj görseli */
+    background-image: url('https://images.unsplash.com/photo-1557429287-b2e26467fc2b?q=80&w=2000&auto=format&fit=crop');
     background-size: cover;
     background-position: center;
     display: flex;
     align-items: center;
     position: relative;
     color: var(--white);
-    padding-top: 80px; /* Header yüksekliği */
+    padding-top: 80px;
 }
 
 .hero-overlay {
@@ -148,7 +149,7 @@ nav a:hover:not(.cta-button) {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4); /* Görseli karartmak için */
+    background-color: rgba(0, 0, 0, 0.4);
     z-index: 1;
 }
 
@@ -205,7 +206,7 @@ nav a:hover:not(.cta-button) {
     display: block;
     width: 80px;
     height: 4px;
-    background-color: var(--accent-color); /* Logodaki altın renk */
+    background-color: var(--accent-color);
     margin: 15px auto 0;
 }
 
@@ -226,6 +227,7 @@ nav a:hover:not(.cta-button) {
     overflow: hidden;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    cursor: pointer;
 }
 
 .project-card img {
@@ -268,7 +270,7 @@ nav a:hover:not(.cta-button) {
     font-weight: 300;
 }
 
-/* --- Yana Kayan Hizmetler Bölümü Stilleri --- */
+/* --- Hizmetler Bölümü (Slider) --- */
 .services {
     padding: 80px 0;
     background-color: var(--light-color);
@@ -287,19 +289,16 @@ nav a:hover:not(.cta-button) {
     overflow-x: auto;
     scroll-behavior: smooth;
     padding: 15px 5px;
-    scrollbar-width: none; /* Firefox kaydırma çubuğunu gizler */
+    scrollbar-width: none;
     width: 100%;
 }
 
-/* Chrome, Safari ve Opera için kaydırma çubuğunu gizle */
 .services-track::-webkit-scrollbar {
     display: none;
 }
 
-/* KART BOYUTLANDIRMALARI */
 .service-card {
-    /* Masaüstü: Tam 3 kart sığacak şekilde genişlik (gap düşülerek) */
-    flex: 0 0 calc((100% - 40px) / 3); 
+    flex: 0 0 calc((100% - 40px) / 3);
     max-width: calc((100% - 40px) / 3);
     background-color: var(--white);
     padding: 30px 20px;
@@ -318,18 +317,6 @@ nav a:hover:not(.cta-button) {
     transform: translateY(-5px);
 }
 
-.icon-box {
-    width: 50px;
-    height: 50px;
-    background-color: rgba(121, 163, 73, 0.15); /* Fıstık yeşilinin hafif şeffaf tonu */
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.4rem;
-    margin-bottom: 15px;
-}
-
 .service-card h4 {
     font-size: 1.2rem;
     margin-bottom: 10px;
@@ -342,7 +329,6 @@ nav a:hover:not(.cta-button) {
     line-height: 1.5;
 }
 
-/* Ok Butonları */
 .slider-btn {
     background-color: var(--white);
     color: var(--secondary-color);
@@ -363,13 +349,8 @@ nav a:hover:not(.cta-button) {
     color: var(--white);
 }
 
-.prev-btn {
-    left: -15px;
-}
-
-.next-btn {
-    right: -15px;
-}
+.prev-btn { left: -15px; }
+.next-btn { right: -15px; }
 
 /* --- Hakkımızda Bölümü Stilleri --- */
 .about {
@@ -383,126 +364,43 @@ nav a:hover:not(.cta-button) {
     gap: 50px;
 }
 
-.about-text {
-    flex: 1;
-}
-
+.about-text { flex: 1; }
 .about-text p {
     margin-bottom: 20px;
     font-size: 1.1rem;
     color: var(--dark-color);
 }
 
-.about-image {
-    flex: 1;
-}
-
+.about-image { flex: 1; }
 .about-image img {
     border-radius: 10px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.1);
 }
 
-/* --- İletişim Bölümü Stilleri --- */
-.contact {
-    padding: 100px 0;
-    background-color: var(--secondary-color);
-    color: var(--white);
-    text-align: center;
+.about-single-page {
+    padding: 90px 0 120px;
+    background-color: var(--light-color);
 }
 
-.contact .section-title {
-    color: var(--white);
-}
-
-.contact .section-title::after {
-    background-color: var(--primary-color);
-}
-
-.contact p {
-    margin-bottom: 50px;
-    color: rgba(255, 255, 255, 0.8);
-}
-
-#contact-form {
-    max-width: 600px;
+.about-paragraph-box {
+    max-width: 850px;
     margin: 0 auto;
-    text-align: left;
+    background-color: var(--white);
+    padding: 50px 40px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
+    border-left: 5px solid var(--primary-color);
 }
 
-#contact-form input, #contact-form textarea {
-    width: 100%;
-    padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    border: none;
-    font-family: var(--font-body);
+.about-paragraph-box p {
+    font-size: 1.15rem;
+    line-height: 1.85;
+    color: var(--dark-color);
+    font-weight: 300;
+    text-align: justify;
 }
 
-#contact-form textarea {
-    resize: vertical;
-}
-
-#contact-form button {
-    display: block;
-    width: 100%;
-}
-
-/* --- Footer Stilleri --- */
-footer {
-    background-color: #1a1a1a;
-    color: rgba(255, 255, 255, 0.7);
-    padding: 50px 0;
-    font-size: 0.9rem;
-}
-
-footer .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.footer-info {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.footer-social a {
-    margin-left: 15px;
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.footer-social a:hover {
-    color: var(--primary-color);
-}
-
-/* --- Mobil ve Medya Uyumluluğu (Responsive) --- */
-@media (max-width: 992px) {
-    .hero h2 { font-size: 2.8rem; }
-    .about-content { flex-direction: column; }
-    .service-card {
-        flex: 0 0 calc((100% - 20px) / 2); /* Tablette 2 kart göster */
-        max-width: calc((100% - 20px) / 2);
-    }
-}
-
-@media (max-width: 768px) {
-    header .container { flex-direction: column; gap: 10px; }
-    nav ul { flex-direction: column; gap: 10px; text-align: center; width: 100%; }
-    .hero { text-align: center; padding-top: 120px; }
-    .hero h2 { font-size: 2.2rem; }
-    .section-title { font-size: 2.2rem; }
-}
-
-@media (max-width: 600px) {
-    .service-card {
-        flex: 0 0 100%; /* Mobilde tam ekrana 1 kart oturur, taşma yapmaz */
-        max-width: 100%;
-    }
-    .prev-btn { left: -5px; }
-    .next-btn { right: -5px; }
-}
-/* --- Neden Bizi Tercih Etmelisiniz? Stilleri --- */
+/* --- Neden Bizi Tercih Etmelisiniz? --- */
 .why-us {
     padding: 100px 0;
     background-color: var(--white);
@@ -550,7 +448,6 @@ footer .container {
     line-height: 1.6;
 }
 
-/* Alt Çağrı Metni Kutusu */
 .why-us-cta {
     background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
     color: var(--white);
@@ -580,27 +477,11 @@ footer .container {
     color: var(--white);
 }
 
-/* Responsive Düzenlemeler */
-@media (max-width: 992px) {
-    .why-us-grid {
-        grid-template-columns: repeat(1, 1fr); /* Tablet ve mobilde alt alta dizilir */
-        gap: 25px;
-    }
-}
-
-@media (max-width: 600px) {
-    .why-us-cta {
-        padding: 25px 20px;
-    }
-    .why-us-cta p {
-        font-size: 1rem;
-    }
-}
 /* --- İletişim Sayfası Stilleri (contact.html) --- */
 .page-banner {
     background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
     color: var(--white);
-    padding: 140px 0 60px; /* Header payı ile birlikte */
+    padding: 140px 0 60px;
     text-align: center;
 }
 
@@ -626,101 +507,92 @@ footer .container {
     gap: 40px;
 }
 
-/* Sol Kart: Bilgiler */
+/* Yenilenen İletişim Kartı Stilleri */
 .contact-info-card {
-    background-color: var(--white);
+    background: #ffffff;
     padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-.contact-info-card h3, .contact-form-card h3 {
+.card-header h3 {
     font-size: 1.8rem;
     color: var(--secondary-color);
-    margin-bottom: 15px;
+    margin-bottom: 12px;
+    font-weight: 600;
 }
 
-.contact-info-card > p {
+.card-header p {
     color: var(--text-color-muted);
     font-size: 0.95rem;
-    margin-bottom: 30px;
+    line-height: 1.6;
+    margin-bottom: 32px;
 }
 
 .info-items {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 24px;
 }
 
 .info-item {
     display: flex;
     align-items: flex-start;
-    gap: 15px;
+    gap: 18px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f0f0f0;
+    transition: transform 0.2s ease;
 }
 
-.info-icon {
-    font-size: 1.5rem;
+.info-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+/* Yuvarlak İkon Kutuları */
+.icon-box {
+    width: 48px;
+    height: 48px;
     background-color: rgba(121, 163, 73, 0.15);
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
 }
 
-.info-item h4 {
-    font-size: 1.05rem;
-    color: var(--dark-color);
-    margin-bottom: 3px;
+.icon-box i {
+    font-size: 1.2rem;
+    color: var(--secondary-color);
 }
 
-.info-item p {
-    color: var(--text-color-muted);
+.info-content h4 {
     font-size: 0.9rem;
-    line-height: 1.4;
-}
-
-/* Sağ Kart: Form */
-.contact-form-card {
-    background-color: var(--white);
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #888888;
+    margin-bottom: 4px;
     font-weight: 600;
+}
+
+.info-content a, 
+.info-content p {
     color: var(--dark-color);
-    margin-bottom: 8px;
+    font-size: 1rem;
+    line-height: 1.5;
+    text-decoration: none;
+    margin: 0;
+    transition: color 0.2s ease;
 }
 
-.form-group input, .form-group textarea {
-    width: 100%;
-    padding: 12px 15px;
-    border: 1px solid #e0e0e0;
-    border-radius: 6px;
-    font-family: var(--font-body);
-    font-size: 0.95rem;
-    transition: var(--transition);
+.info-content a:hover {
+    color: var(--primary-color);
 }
 
-.form-group input:focus, .form-group textarea:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(121, 163, 73, 0.2);
-}
-
-.contact-form-card .btn {
-    width: 100%;
-    border: none;
+.info-content p span {
+    color: #d32f2f;
+    font-size: 0.9rem;
 }
 
 /* Harita Alanı */
@@ -742,17 +614,91 @@ footer .container {
     border: 2px dashed #ccc;
 }
 
-/* Responsive (Mobil / Tablet) */
-@media (max-width: 992px) {
-    .contact-wrapper {
-        grid-template-columns: 1fr;
-    }
-}
-/* --- Modal Galeri Stilleri --- */
-.project-card {
-    cursor: pointer;
+/* --- WhatsApp Kartı ve Sabit Buton Stilleri --- */
+.contact-whatsapp-card {
+    background-color: var(--white);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-top: 5px solid #25D366;
 }
 
+.whatsapp-card-icon i {
+    font-size: 4rem;
+    color: #25D366;
+}
+
+.contact-whatsapp-card h3 {
+    font-size: 1.8rem;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+}
+
+.contact-whatsapp-card p {
+    color: var(--text-color-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.whatsapp-btn-large i {
+    font-size: 1.3rem;
+}
+
+.whatsapp-btn-large:hover {
+    background-color: #128C7E;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(18, 140, 126, 0.4);
+    color: #ffffff;
+}
+
+.fixed-whatsapp {
+    position: fixed !important;
+    bottom: 25px !important;
+    right: 25px !important;
+    width: 60px !important;
+    height: 60px !important;
+    background-color: #25D366;
+    border-radius: 50%;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    z-index: 999999 !important;
+    text-decoration: none;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    animation: pulse-wa 2s infinite;
+}
+
+.fixed-whatsapp i {
+    font-size: 32px !important;
+    color: #ffffff !important;
+    line-height: 1;
+}
+
+.fixed-whatsapp:hover {
+    background-color: #128C7E;
+    transform: scale(1.1);
+}
+
+@keyframes pulse-wa {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+/* --- Modal Galeri Stilleri --- */
 .modal {
     display: none; 
     position: fixed;
@@ -804,7 +750,6 @@ footer .container {
     padding-top: 20px;
 }
 
-/* Sol Dikey Thumbnail Listesi */
 .thumbnail-list {
     display: flex;
     flex-direction: column;
@@ -840,7 +785,6 @@ footer .container {
     border-color: var(--primary-color);
 }
 
-/* Orta Ana Görsel Alanı */
 .main-image-container {
     flex: 1;
     height: 100%;
@@ -859,7 +803,6 @@ footer .container {
     object-fit: contain;
 }
 
-/* Ok Butonları */
 .modal-arrow {
     position: absolute;
     top: 50%;
@@ -884,8 +827,58 @@ footer .container {
 .prev-arrow { left: 15px; }
 .next-arrow { right: 15px; }
 
-/* Mobil Uyum */
+/* --- Footer Stilleri --- */
+footer {
+    background-color: #1a1a1a;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 50px 0;
+    font-size: 0.9rem;
+}
+
+footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.footer-social a {
+    margin-left: 15px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-social a:hover {
+    color: var(--primary-color);
+}
+
+/* --- Mobil ve Medya Uyumluluğu (Responsive) --- */
+@media (max-width: 992px) {
+    .hero h2 { font-size: 2.8rem; }
+    .about-content { flex-direction: column; }
+    .service-card {
+        flex: 0 0 calc((100% - 20px) / 2);
+        max-width: calc((100% - 20px) / 2);
+    }
+    .why-us-grid {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 25px;
+    }
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 768px) {
+    header .container { flex-direction: column; gap: 10px; }
+    nav ul { flex-direction: column; gap: 10px; text-align: center; width: 100%; }
+    .hero { text-align: center; padding-top: 120px; }
+    .hero h2 { font-size: 2.2rem; }
+    .section-title { font-size: 2.2rem; }
     .modal-body {
         flex-direction: column-reverse;
     }
@@ -899,137 +892,26 @@ footer .container {
         width: 70px;
     }
 }
-/* --- Hakkımızda Tek Paragraf Sayfa Stili --- */
-.about-single-page {
-    padding: 90px 0 120px;
-    background-color: var(--light-color);
-}
-
-.about-paragraph-box {
-    max-width: 850px;
-    margin: 0 auto;
-    background-color: var(--white);
-    padding: 50px 40px;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
-    border-left: 5px solid var(--primary-color);
-}
-
-.about-paragraph-box p {
-    font-size: 1.15rem;
-    line-height: 1.85;
-    color: var(--dark-color);
-    font-weight: 300;
-    text-align: justify;
-}
 
 @media (max-width: 600px) {
-    .about-paragraph-box {
-        padding: 30px 20px;
+    .service-card {
+        flex: 0 0 100%;
+        max-width: 100%;
     }
-    .about-paragraph-box p {
-        font-size: 1rem;
-        text-align: left;
-    }
-}
-/* --- WhatsApp Kartı ve Sabit Buton Stilleri --- */
-
-/* İletişim Sayfasındaki WhatsApp Kartı */
-.contact-whatsapp-card {
-    background-color: var(--white);
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-top: 5px solid #25D366; /* WhatsApp Yeşili */
-}
-
-/* Kart Üstündeki Büyük İkon */
-.whatsapp-card-icon i {
-    font-size: 4rem;
-    color: #25D366;
-}
-
-.contact-whatsapp-card h3 {
-    font-size: 1.8rem;
-    color: var(--secondary-color);
-    margin-bottom: 15px;
-}
-
-.contact-whatsapp-card p {
-    color: var(--text-color-muted);
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 30px;
-}
-
-/* Buton İçi İkon */
-.whatsapp-btn-large i {
-    font-size: 1.3rem;
-}
-
-.whatsapp-btn-large:hover {
-    background-color: #128C7E;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(18, 140, 126, 0.4);
-    color: #ffffff;
-}
-
-/* Sağ Alt Sabit WhatsApp Butonu */
-.fixed-whatsapp {
-    position: fixed !important;
-    bottom: 25px !important;
-    right: 25px !important;
-    width: 60px !important;
-    height: 60px !important;
-    background-color: #25D366;
-    border-radius: 50%;
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    z-index: 999999 !important; /* Diğer tüm elemanların üstünde durması için */
-    text-decoration: none;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-    animation: pulse-wa 2s infinite;
-}
-
-.fixed-whatsapp i {
-    font-size: 32px !important;
-    color: #ffffff !important;
-    line-height: 1;
-}
-
-.fixed-whatsapp:hover {
-    background-color: #128C7E;
-    transform: scale(1.1);
-}
-
-/* Hafif Yanıp Sönme (Pulse) Animasyonu */
-@keyframes pulse-wa {
-    0% {
-        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
-    }
-    70% {
-        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-    }
-}
-
-@media (max-width: 600px) {
+    .prev-btn { left: -5px; }
+    .next-btn { right: -5px; }
+    .why-us-cta { padding: 25px 20px; }
+    .why-us-cta p { font-size: 1rem; }
+    .about-paragraph-box { padding: 30px 20px; }
+    .about-paragraph-box p { font-size: 1rem; text-align: left; }
     .fixed-whatsapp {
         bottom: 15px !important;
         right: 15px !important;
         width: 50px !important;
         height: 50px !important;
     }
-    .fixed-whatsapp i {
-        font-size: 26px !important;
-    }
+    .fixed-whatsapp i { font-size: 26px !important; }
+    .contact-info-card { padding: 25px; }
+    .icon-box { width: 40px; height: 40px; }
+    .icon-box i { font-size: 1rem; }
 }
