@@ -932,3 +932,104 @@ footer .container {
         text-align: left;
     }
 }
+/* --- WhatsApp Kartı ve Sabit Buton Stilleri --- */
+
+/* İletişim Sayfasındaki WhatsApp Kartı */
+.contact-whatsapp-card {
+    background-color: var(--white);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-top: 5px solid #25D366; /* WhatsApp Yeşili */
+}
+
+/* Kart Üstündeki Büyük İkon */
+.whatsapp-card-icon i {
+    font-size: 4rem;
+    color: #25D366;
+}
+
+.contact-whatsapp-card h3 {
+    font-size: 1.8rem;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+}
+
+.contact-whatsapp-card p {
+    color: var(--text-color-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* Buton İçi İkon */
+.whatsapp-btn-large i {
+    font-size: 1.3rem;
+}
+
+.whatsapp-btn-large:hover {
+    background-color: #128C7E;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(18, 140, 126, 0.4);
+    color: #ffffff;
+}
+
+/* Sağ Alt Sabit WhatsApp Butonu */
+.fixed-whatsapp {
+    position: fixed !important;
+    bottom: 25px !important;
+    right: 25px !important;
+    width: 60px !important;
+    height: 60px !important;
+    background-color: #25D366;
+    border-radius: 50%;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    z-index: 999999 !important; /* Diğer tüm elemanların üstünde durması için */
+    text-decoration: none;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    animation: pulse-wa 2s infinite;
+}
+
+.fixed-whatsapp i {
+    font-size: 32px !important;
+    color: #ffffff !important;
+    line-height: 1;
+}
+
+.fixed-whatsapp:hover {
+    background-color: #128C7E;
+    transform: scale(1.1);
+}
+
+/* Hafif Yanıp Sönme (Pulse) Animasyonu */
+@keyframes pulse-wa {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+@media (max-width: 600px) {
+    .fixed-whatsapp {
+        bottom: 15px !important;
+        right: 15px !important;
+        width: 50px !important;
+        height: 50px !important;
+    }
+    .fixed-whatsapp i {
+        font-size: 26px !important;
+    }
+}

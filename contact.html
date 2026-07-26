@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome İkon Kütüphanesi -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 
@@ -16,19 +18,18 @@
     <header>
         <div class="container">
             <a href="index.html" class="logo-container">
-                <img src="logo.jpeg" alt="Fortuna Landscape Logosu" class="site-logo">
+                <img src="images/mini logo.jpeg" alt="Fortuna Landscape Logosu" class="site-logo">
                 <h1 class="logo-text">Fortuna Landscape</h1>
             </a>
             <nav>
                 <ul>
-                    <li><a href="index.html#projemiz">Projelerimiz</a></li>
-                    <li><a href="index.html#hizmetler">Hizmetlerimiz</a></li>
                     <li><a href="hakkimizda.html">Hakkımızda</a></li>
                     <li><a href="contact.html" class="cta-button">Bize Ulaşın</a></li>
                 </ul>
             </nav>
         </div>
     </header>
+
 
     <!-- Sayfa Başlığı (Header Altı Banner) -->
     <section class="page-banner">
@@ -82,36 +83,20 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Sağ Taraf: İletişim Formu -->
-                <div class="contact-form-card">
-                    <h3>Mesaj Gönderin</h3>
-                    <form id="page-contact-form">
-                        <div class="form-group">
-                            <label for="name">Adınız Soyadınız</label>
-                            <input type="text" id="name" name="ad" placeholder="Örn: Ahmet Yılmaz" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="email">E-posta Adresiniz</label>
-                            <input type="email" id="email" name="email" placeholder="Örn: ahmet@example.com" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="phone">Telefon Numaranız</label>
-                            <input type="tel" id="phone" name="phone" placeholder="05XX XXX XX XX">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="message">Mesajınız</label>
-                            <textarea id="message" name="mesaj" rows="5" placeholder="Projeniz hakkında kısa bilgi verin..." required></textarea>
-                        </div>
-
-                        <button type="submit" class="btn">Gönder</button>
-                    </form>
+                <!-- Sağ Taraf: WhatsApp İletişim Kartı -->
+                <div class="contact-whatsapp-card">
+                    <div class="whatsapp-card-icon">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+                    <h3>WhatsApp ile Hızlı İletişim</h3>
+                    <p>Projeleriniz hakkında anında bilgi almak, keşif talebinde bulunmak veya sorularınızı iletmek için bize WhatsApp üzerinden doğrudan ulaşabilirsiniz.</p>
+                    
+                    <!-- Numarayı kendi numaranızla güncelleyin (Örn: 905XXXXXXXXX) -->
+                    <a href="https://wa.me/905000000000?text=Merhaba,%20projem%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" class="whatsapp-btn-large">
+                        <i class="fa-brands fa-whatsapp"></i> WhatsApp'tan Yazın
+                    </a>
                 </div>
-
-            </div>
+            
         </div>
     </section>
 
@@ -123,6 +108,10 @@
             </div>
         </div>
     </section>
+    <!-- Sağ Alt Sabit WhatsApp Butonu -->
+    <a href="https://wa.me/905000000000?text=Merhaba,%20projem%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." class="fixed-whatsapp" target="_blank" title="WhatsApp ile İletişime Geçin">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
 
     <!-- Footer -->
     <footer>
