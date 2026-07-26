@@ -114,6 +114,28 @@ function fortunalandscape_why_us_customizer($wp_customize) {
 
 }
 add_action('customize_register', 'fortunalandscape_why_us_customizer');
+// Neden Biz - Buton Yazısı
+    $wp_customize->add_setting('why_us_btn_text', array(
+        'default'           => 'Bizimle İletişime Geçin',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('why_us_btn_text', array(
+        'label'    => __('Buton Yazısı', 'fortunalandscape'),
+        'section'  => 'why_us_section',
+        'type'     => 'text',
+    ));
+
+    // Neden Biz - Buton Linki (URL)
+    $wp_customize->add_setting('why_us_btn_url', array(
+        'default'           => home_url('/iletisim/'),
+        'sanitize_callback' => 'esc_url_raw',
+    ));
+    $wp_customize->add_control('why_us_btn_url', array(
+        'label'       => __('Buton Yönlendirme Linki (URL)', 'fortunalandscape'),
+        'description' => __('Örn: https://siteadresiniz.com/iletisim/', 'fortunalandscape'),
+        'section'     => 'why_us_section',
+        'type'        => 'url',
+    ));
 /* ==========================================================================
    4. SOL MENÜYE "HİZMETLER" CPT VE LINK/INPUT İLE İKON SEÇİCİ
    ========================================================================== */
@@ -613,25 +635,3 @@ function fortunalandscape_footer_menu_customizer($wp_customize) {
     ));
 }
 add_action('customize_register', 'fortunalandscape_footer_menu_customizer');
-// Neden Biz - Buton Yazısı
-    $wp_customize->add_setting('why_us_btn_text', array(
-        'default'           => 'Bizimle İletişime Geçin',
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control('why_us_btn_text', array(
-        'label'    => __('Buton Yazısı', 'fortunalandscape'),
-        'section'  => 'why_us_section',
-        'type'     => 'text',
-    ));
-
-    // Neden Biz - Buton Linki (URL)
-    $wp_customize->add_setting('why_us_btn_url', array(
-        'default'           => home_url('/iletisim/'),
-        'sanitize_callback' => 'esc_url_raw',
-    ));
-    $wp_customize->add_control('why_us_btn_url', array(
-        'label'       => __('Buton Yönlendirme Linki (URL)', 'fortunalandscape'),
-        'description' => __('Örn: https://siteadresiniz.com/iletisim/', 'fortunalandscape'),
-        'section'     => 'why_us_section',
-        'type'        => 'url',
-    ));
