@@ -163,34 +163,41 @@ $services_title = get_theme_mod('services_main_title', 'Hizmetlerimiz');
         </div>
     </div>
 </section>
-<!-- Neden Bizi Tercih Etmelisiniz Bölümü -->
+<!-- Neden Bizi Tercih Etmelisiniz? Bölümü -->
 <section id="neden-biz" class="why-us">
     <div class="container">
         <h3 class="section-title">
             <?php echo esc_html(get_theme_mod('why_us_title', 'Neden Bizi Tercih Etmelisiniz?')); ?>
         </h3>
-        <p class="section-subtitle">
-            <?php echo esc_html(get_theme_mod('why_us_subtitle', 'Yılların getirdiği tecrübe ve doğaya olan tutkumuzla yaşam alanlarınızı dönüştürüyoruz.')); ?>
-        </p>
-
+        
         <div class="why-us-grid">
             <!-- Madde 1 -->
             <div class="why-us-card">
-                <h4><?php echo esc_html(get_theme_mod('why_us_item1_title', 'Uzman Kadro')); ?></h4>
-                <p><?php echo esc_html(get_theme_mod('why_us_item1_desc', 'Alanında deneyimli peyzaj mimarları ve uygulama ekibimizle profesyonel hizmet sunıyoruz.')); ?></p>
+                <div class="why-us-number">01</div>
+                <h4><?php echo esc_html(get_theme_mod('why_us_item1_title', 'Özgün ve İşlevsel Tasarımlar')); ?></h4>
+                <p><?php echo esc_html(get_theme_mod('why_us_item1_desc', 'Müşterilerimize estetik, işlevsellik ve sürdürülebilirliği bir araya getiren özgün tasarım çözümleri sunuyoruz.')); ?></p>
             </div>
 
             <!-- Madde 2 -->
             <div class="why-us-card">
-                <h4><?php echo esc_html(get_theme_mod('why_us_item2_title', 'Kaliteli Malzeme')); ?></h4>
-                <p><?php echo esc_html(get_theme_mod('why_us_item2_desc', 'Projelerimizde sadece en dayanıklı, iklime uygun bitki ve yapı malzemelerini kullanıyoruz.')); ?></p>
+                <div class="why-us-number">02</div>
+                <h4><?php echo esc_html(get_theme_mod('why_us_item2_title', 'Kalite ve Güven')); ?></h4>
+                <p><?php echo esc_html(get_theme_mod('why_us_item2_desc', 'Kaliteli malzeme seçimi, zamanında teslim anlayışı ve müşteri memnuniyetini esas alan hizmet yaklaşımımızla güvenilir projelere imza atıyoruz.')); ?></p>
             </div>
 
             <!-- Madde 3 -->
             <div class="why-us-card">
-                <h4><?php echo esc_html(get_theme_mod('why_us_item3_title', 'Zamanında Teslim')); ?></h4>
-                <p><?php echo esc_html(get_theme_mod('why_us_item3_desc', 'Belirlenen takvime sadık kalarak projelerinizi eksiksiz ve zamanında teslim ediyoruz.')); ?></p>
+                <div class="why-us-number">03</div>
+                <h4><?php echo esc_html(get_theme_mod('why_us_item3_title', 'Geleceğe Değer Katan Yaklaşım')); ?></h4>
+                <p><?php echo esc_html(get_theme_mod('why_us_item3_desc', 'Doğaya duyarlı ve sürdürülebilir tasarım ilkelerini benimseyerek, yalnızca bugünün ihtiyaçlarını karşılayan değil, geleceğe değer katan yaşam alanları oluşturmayı hedefliyoruz.')); ?></p>
             </div>
+        </div>
+
+        <div class="why-us-cta">
+            <p><?php echo esc_html(get_theme_mod('why_us_cta_text', 'Hayal ettiğiniz mekânları estetik ve fonksiyonel çözümlerle gerçeğe dönüştürmek için yanınızdayız.')); ?></p>
+            <a href="<?php echo esc_url(get_theme_mod('why_us_btn_link', site_url('/contact.html'))); ?>" class="btn">
+                <?php echo esc_html(get_theme_mod('why_us_btn_text', 'Bizimle İletişime Geçin')); ?>
+            </a>
         </div>
     </div>
 </section>
