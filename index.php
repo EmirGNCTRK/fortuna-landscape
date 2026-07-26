@@ -163,6 +163,7 @@ $services_title = get_theme_mod('services_main_title', 'Hizmetlerimiz');
         </div>
     </div>
 </section>
+
 <!-- Neden Bizi Tercih Etmelisiniz? Bölümü -->
 <section id="neden-biz" class="why-us">
     <div class="container">
@@ -195,15 +196,16 @@ $services_title = get_theme_mod('services_main_title', 'Hizmetlerimiz');
 
         <div class="why-us-cta">
             <p><?php echo esc_html(get_theme_mod('why_us_cta_text', 'Hayal ettiğiniz mekânları estetik ve fonksiyonel çözümlerle gerçeğe dönüştürmek için yanınızdayız.')); ?></p>
-            <a href="<?php echo esc_url(get_theme_mod('why_us_btn_link', )); ?>" class="btn">
+            
+            <!-- Dinamik İletişim Sayfası Yönlendirmesi -->
+            <?php 
+            $why_us_url = get_theme_mod('why_us_btn_url', home_url('/iletisim/')); 
+            ?>
+            <a href="<?php echo esc_url($why_us_url); ?>" class="btn">
                 <?php echo esc_html(get_theme_mod('why_us_btn_text', 'Bizimle İletişime Geçin')); ?>
             </a>
         </div>
     </div>
 </section>
-<!-- Sağ Alt Sabit WhatsApp Butonu -->
-<a href="https://wa.me/905000000000?text=Merhaba,%20projem%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." class="fixed-whatsapp" target="_blank" title="WhatsApp ile İletişime Geçin">
-    <i class="fa-brands fa-whatsapp"></i>
-</a>
 
 <?php get_footer(); ?>

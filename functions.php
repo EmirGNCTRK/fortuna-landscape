@@ -3,19 +3,34 @@
  * Fortuna Landscape - functions.php
  */
 
-// 1. TEMA KURULUMU VE DESTEKLERİ
+/* ==========================================================================
+   1. TEMA KURULUMU, DESTEKLERİ VE MENÜ TANIMLARI
+   ========================================================================== */
 function fortunalandscape_setup() {
+    // Dinamik Başlık ve Görsel Destekleri
     add_theme_support('title-tag');
     add_theme_support('post-thumbnails');
-    add_theme_support('custom-logo');
     
+    // Özel Logo Desteği
+    add_theme_support('custom-logo', array(
+        'height'      => 100,
+        'width'       => 100,
+        'flex-height' => true,
+        'flex-width'  => true,
+    ));
+
+    // Menü Konumlarını Tanımla
     register_nav_menus(array(
-        'primary' => __('Ana Menü', 'fortunalandscape'),
+        'primary-menu' => __('Ana Navigasyon Menüsü', 'fortunalandscape'),
+        'footer-menu'  => __('Footer Hızlı Menü', 'fortunalandscape'),
     ));
 }
 add_action('after_setup_theme', 'fortunalandscape_setup');
 
-// 2. CSS VE JS DOSYALARININ DAHİL EDİLMESİ
+
+/* ==========================================================================
+   2. CSS VE JS DOSYALARININ DAHİL EDİLMESİ
+   ========================================================================== */
 function fortunalandscape_scripts() {
     wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&display=swap', array(), null);
     wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css', array(), '6.5.1');
@@ -26,14 +41,62 @@ add_action('wp_enqueue_scripts', 'fortunalandscape_scripts');
 
 
 /* ==========================================================================
-   3. TEMA ÖZELLEŞTİRİCİ (CUSTOMIZER) - HERO VE GENEL AYARLAR
+   HELPER / SANITIZATION FONKSİYONLARI
    ========================================================================== */
 
+// Checkbox Temizleme (Sanitization) Fonksiyonu
+function fortunalandscape_sanitize_checkbox($checked) {
+    return (isset($checked) && $checked === true) ? true : false;
+}
+
+// iFrame HTML Temizleme/İzin Verme Fonksiyonu
+function fortunalandscape_sanitize_iframe($input) {
+    return wp_kses($input, array(
+        'iframe' => array(
+            'src'             => true,
+            'width'           => true,
+            'height'          => true,
+            'frameborder'     => true,
+            'style'           => true,
+            'allowfullscreen' => true,
+            'loading'         => true,
+            'referrerpolicy'  => true,
+        ),
+    ));
+}
+
+
+/* ==========================================================================
+   3. ÖZELLEŞTİRİCİ - HEADER & PRELOADER
+   ========================================================================== */
+function fortunalandscape_header_customizer($wp_customize) {
+    $wp_customize->add_section('header_section', array(
+        'title'    => __('Header & Preloader Ayarları', 'fortunalandscape'),
+        'priority' => 10,
+    ));
+
+    // Preloader Göster/Gizle
+    $wp_customize->add_setting('show_preloader', array(
+        'default'           => true,
+        'sanitize_callback' => 'fortunalandscape_sanitize_checkbox',
+    ));
+    $wp_customize->add_control('show_preloader', array(
+        'label'    => __('Yükleme Ekranını (Preloader) Aktif Et', 'fortunalandscape'),
+        'section'  => 'header_section',
+        'type'     => 'checkbox',
+    ));
+}
+add_action('customize_register', 'fortunalandscape_header_customizer');
+
+
+/* ==========================================================================
+   4. ÖZELLEŞTİRİCİ - HERO VE HİZMETLER BAŞLIĞI
+   ========================================================================== */
 function fortunalandscape_customizer($wp_customize) {
     // HERO BÖLÜMÜ
     $wp_customize->add_section('hero_section', array(
         'title'    => __('Hero (Giriş) Ayarları', 'fortunalandscape'),
-        'priority' => 10,
+        'priority' => 11,
     ));
 
     $wp_customize->add_setting('hero_bg_image', array('default' => '', 'sanitize_callback' => 'esc_url_raw'));
@@ -59,22 +122,23 @@ function fortunalandscape_customizer($wp_customize) {
     // HİZMETLER BÖLÜM BAŞLIĞI
     $wp_customize->add_section('services_section', array(
         'title'    => __('Hizmetler Bölüm Başlığı', 'fortunalandscape'),
-        'priority' => 11,
+        'priority' => 12,
     ));
 
     $wp_customize->add_setting('services_main_title', array('default' => 'Hizmetlerimiz', 'sanitize_callback' => 'sanitize_text_field'));
     $wp_customize->add_control('services_main_title', array('label' => __('Bölüm Başlığı', 'fortunalandscape'), 'section' => 'services_section', 'type' => 'text'));
 }
 add_action('customize_register', 'fortunalandscape_customizer');
-/* ==========================================================================
-   ÖZELLEŞTİRİCİ - NEDEN BİZİ TERCİH ETMELİSİNİZ (TAM UYUM)
-   ========================================================================== */
 
+
+/* ==========================================================================
+   5. ÖZELLEŞTİRİCİ - NEDEN BİZİ TERCİH ETMELİSİNİZ
+   ========================================================================== */
 function fortunalandscape_why_us_customizer($wp_customize) {
     
     $wp_customize->add_section('why_us_section', array(
         'title'    => __('Neden Bizi Tercih Etmelisiniz?', 'fortunalandscape'),
-        'priority' => 12,
+        'priority' => 13,
     ));
 
     // Ana Başlık
@@ -109,16 +173,16 @@ function fortunalandscape_why_us_customizer($wp_customize) {
     $wp_customize->add_setting('why_us_btn_text', array('default' => 'Bizimle İletişime Geçin', 'sanitize_callback' => 'sanitize_text_field'));
     $wp_customize->add_control('why_us_btn_text', array('label' => __('Buton Yazısı', 'fortunalandscape'), 'section' => 'why_us_section', 'type' => 'text'));
 
-    $wp_customize->add_setting('why_us_btn_link', array('default' => site_url('/contact.html'), 'sanitize_callback' => 'esc_url_raw'));
-    $wp_customize->add_control('why_us_btn_link', array('label' => __('Buton Linki', 'fortunalandscape'), 'section' => 'why_us_section', 'type' => 'text'));
+    $wp_customize->add_setting('why_us_btn_url', array('default' => home_url('/iletisim/'), 'sanitize_callback' => 'esc_url_raw'));
+    $wp_customize->add_control('why_us_btn_url', array('label' => __('Buton Linki (URL)', 'fortunalandscape'), 'section' => 'why_us_section', 'type' => 'url'));
 
 }
 add_action('customize_register', 'fortunalandscape_why_us_customizer');
 
-/* ==========================================================================
-   4. SOL MENÜYE "HİZMETLER" CPT VE LINK/INPUT İLE İKON SEÇİCİ
-   ========================================================================== */
 
+/* ==========================================================================
+   6. SOL MENÜYE "HİZMETLER" CPT VE LINK/INPUT İLE İKON SEÇİCİ
+   ========================================================================== */
 function fortunalandscape_register_services_cpt() {
     $labels = array(
         'name'          => 'Hizmetler',
@@ -153,7 +217,6 @@ function fortunalandscape_service_icon_callback($post) {
     $current_icon = get_post_meta($post->ID, '_service_icon', true);
     if(!$current_icon) $current_icon = 'fa-solid fa-tree';
     ?>
-    <!-- FontAwesome Admin Önizleme Desteği -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <div style="margin-bottom: 12px;">
@@ -172,7 +235,6 @@ function fortunalandscape_service_icon_callback($post) {
 
     <script>
     jQuery(document).ready(function($){
-        // Kullanıcı koda yazıp değiştikçe veya tuşa bastıkça önizlemeyi anında güncelle
         $('#service_icon_input').on('input change', function(){
             var iconClass = $(this).val().trim();
             if(iconClass === '') {
@@ -197,9 +259,8 @@ add_action('save_post', 'fortunalandscape_save_service_icon');
 
 
 /* ==========================================================================
-   5. SOL MENÜYE "PROJELER" EKLEME & ÖZEL GALERİ YÖNETİMİ
+   7. SOL MENÜYE "PROJELER" EKLEME & ÖZEL GALERİ YÖNETİMİ
    ========================================================================== */
-
 function fortunalandscape_register_projects_cpt() {
     $labels = array(
         'name'          => 'Projeler',
@@ -305,16 +366,28 @@ function fortunalandscape_save_gallery_metabox($post_id) {
     }
 }
 add_action('save_post', 'fortunalandscape_save_gallery_metabox');
-/* ==========================================================================
-   ÖZELLEŞTİRİCİ - FOOTER & SOSYAL MEDYA (AÇ/KAPAT SWITCH DESTEKLİ)
-   ========================================================================== */
 
+
+/* ==========================================================================
+   8. ÖZELLEŞTİRİCİ - FOOTER & SOSYAL MEDYA
+   ========================================================================== */
 function fortunalandscape_footer_customizer($wp_customize) {
     
-    // Footer Sekmesi
     $wp_customize->add_section('footer_section', array(
         'title'    => __('Footer & Sosyal Medya', 'fortunalandscape'),
-        'priority' => 13,
+        'priority' => 14,
+    ));
+
+    // Footer Hızlı Menü Göster/Gizle
+    $wp_customize->add_setting('show_footer_nav', array(
+        'default'           => true,
+        'sanitize_callback' => 'fortunalandscape_sanitize_checkbox',
+    ));
+    $wp_customize->add_control('show_footer_nav', array(
+        'label'    => __('Footer Hızlı Menüyü Göster', 'fortunalandscape'),
+        'section'  => 'footer_section',
+        'type'     => 'checkbox',
+        'priority' => 1,
     ));
 
     // Telif Metni
@@ -349,8 +422,6 @@ function fortunalandscape_footer_customizer($wp_customize) {
     );
 
     foreach ($socials as $key => $label) {
-        
-        // 1. Switch / Checkbox Kontrolü (Görünsün mü?)
         $wp_customize->add_setting('show_social_' . $key, array(
             'default'           => true,
             'sanitize_callback' => 'fortunalandscape_sanitize_checkbox',
@@ -361,7 +432,6 @@ function fortunalandscape_footer_customizer($wp_customize) {
             'type'    => 'checkbox',
         ));
 
-        // 2. URL Girme Alanı
         $wp_customize->add_setting('social_' . $key, array(
             'default'           => 'https://' . $key . '.com',
             'sanitize_callback' => 'esc_url_raw',
@@ -375,23 +445,17 @@ function fortunalandscape_footer_customizer($wp_customize) {
 }
 add_action('customize_register', 'fortunalandscape_footer_customizer');
 
-// Checkbox Temizleme (Sanitization) Fonksiyonu
-function fortunalandscape_sanitize_checkbox($checked) {
-    return (isset($checked) && $checked === true) ? true : false;
-}
-/* ==========================================================================
-   ÖZELLEŞTİRİCİ - HAKKIMIZDA SAYFASI AYARLARI
-   ========================================================================== */
 
+/* ==========================================================================
+   9. ÖZELLEŞTİRİCİ - HAKKIMIZDA SAYFASI
+   ========================================================================== */
 function fortunalandscape_about_customizer($wp_customize) {
     
-    // Hakkımızda Sekmesi
     $wp_customize->add_section('about_page_section', array(
         'title'    => __('Hakkımızda Sayfası', 'fortunalandscape'),
-        'priority' => 14,
+        'priority' => 15,
     ));
 
-    // Banner Başlığı
     $wp_customize->add_setting('about_banner_title', array(
         'default'           => 'Hakkımızda',
         'sanitize_callback' => 'sanitize_text_field',
@@ -402,7 +466,6 @@ function fortunalandscape_about_customizer($wp_customize) {
         'type'     => 'text',
     ));
 
-    // Paragraf Metni
     $wp_customize->add_setting('about_content_text', array(
         'default'           => 'Fortuna Landscape olarak; doğayla insanı estetik, fonksiyonel ve sürdürülebilir bir çizgide buluşturma vizyonuyla yola çıktık. Peyzaj mimarlığı ve açık alan tasarımı alanında uzman kadromuzla, her projeye bir sanat eseri titizliğiyle yaklaşıyor, yaşam alanlarınıza ruh ve değer katıyoruz. Modern tasarım anlayışımızı çevreye duyarlı malzemeler ve yenilikçi çözümlerle harmanlayarak, yalnızca bugünün değil geleceğin de ihtiyaçlarına cevap veren zamansız mekanlar kurguluyoruz. Müşteri memnuniyetini ve kaliteyi her zaman odağımıza alarak, hayal ettiğiniz doğal ve estetik yaşam alanlarını gerçeğe dönüştürmek için tutkuyla çalışmaya devam ediyoruz.',
         'sanitize_callback' => 'sanitize_textarea_field',
@@ -414,18 +477,19 @@ function fortunalandscape_about_customizer($wp_customize) {
     ));
 }
 add_action('customize_register', 'fortunalandscape_about_customizer');
-/* ==========================================================================
-   ÖZELLEŞTİRİCİ - İLETİŞİM SAYFASI TÜM AYARLAR & SWITCH KONTROLLERİ
-   ========================================================================== */
 
+
+/* ==========================================================================
+   10. ÖZELLEŞTİRİCİ - İLETİŞİM SAYFASI & SWITCH KONTROLLERİ
+   ========================================================================== */
 function fortunalandscape_contact_customizer($wp_customize) {
 
     $wp_customize->add_section('contact_page_section', array(
         'title'    => __('İletişim Sayfası', 'fortunalandscape'),
-        'priority' => 15,
+        'priority' => 16,
     ));
 
-    // --- 1. BANNER AYARLARI ---
+    // --- BANNER AYARLARI ---
     $wp_customize->add_setting('show_contact_banner', array('default' => true, 'sanitize_callback' => 'fortunalandscape_sanitize_checkbox'));
     $wp_customize->add_control('show_contact_banner', array('label' => __('Banner Alanını Göster', 'fortunalandscape'), 'section' => 'contact_page_section', 'type' => 'checkbox'));
 
@@ -435,7 +499,7 @@ function fortunalandscape_contact_customizer($wp_customize) {
     $wp_customize->add_setting('contact_banner_subtitle', array('default' => 'Hayalinizdeki peyzaj projesini birlikte hayata geçirelim.', 'sanitize_callback' => 'sanitize_text_field'));
     $wp_customize->add_control('contact_banner_subtitle', array('label' => __('Banner Alt Başlığı', 'fortunalandscape'), 'section' => 'contact_page_section', 'type' => 'text'));
 
-    // --- 2. SOL İLETİŞİM KARTI & BİLGİLERİ ---
+    // --- SOL İLETİŞİM KARTI & BİLGİLERİ ---
     $wp_customize->add_setting('show_contact_info_card', array('default' => true, 'sanitize_callback' => 'fortunalandscape_sanitize_checkbox'));
     $wp_customize->add_control('show_contact_info_card', array('label' => __('İletişim Bilgileri Kartını Göster', 'fortunalandscape'), 'section' => 'contact_page_section', 'type' => 'checkbox'));
 
@@ -494,8 +558,7 @@ function fortunalandscape_contact_customizer($wp_customize) {
     $wp_customize->add_setting('contact_hours_text_2', array('default' => 'Pazar: Kapalı', 'sanitize_callback' => 'sanitize_text_field'));
     $wp_customize->add_control('contact_hours_text_2', array('label' => __('Çalışma Saatleri (2. Satır Vurgulu)', 'fortunalandscape'), 'section' => 'contact_page_section', 'type' => 'text'));
 
-
-    // --- 3. SAĞ WHATSAPP KARTI AYARLARI ---
+    // --- SAĞ WHATSAPP KARTI AYARLARI ---
     $wp_customize->add_setting('show_contact_whatsapp_card', array('default' => true, 'sanitize_callback' => 'fortunalandscape_sanitize_checkbox'));
     $wp_customize->add_control('show_contact_whatsapp_card', array('label' => __('WhatsApp Kartını Göster', 'fortunalandscape'), 'section' => 'contact_page_section', 'type' => 'checkbox'));
 
@@ -514,8 +577,7 @@ function fortunalandscape_contact_customizer($wp_customize) {
     $wp_customize->add_setting('contact_wa_card_btn_text', array('default' => 'WhatsApp\'tan Yazın', 'sanitize_callback' => 'sanitize_text_field'));
     $wp_customize->add_control('contact_wa_card_btn_text', array('label' => __('WhatsApp Buton Yazısı', 'fortunalandscape'), 'section' => 'contact_page_section', 'type' => 'text'));
 
-
-    // --- 4. GOOGLE MAPS HARİTA BÖLÜMÜ ---
+    // --- GOOGLE MAPS HARİTA BÖLÜMÜ ---
     $wp_customize->add_setting('show_contact_map', array('default' => true, 'sanitize_callback' => 'fortunalandscape_sanitize_checkbox'));
     $wp_customize->add_control('show_contact_map', array('label' => __('Google Maps Harita Alanını Göster', 'fortunalandscape'), 'section' => 'contact_page_section', 'type' => 'checkbox'));
 
@@ -528,89 +590,3 @@ function fortunalandscape_contact_customizer($wp_customize) {
     ));
 }
 add_action('customize_register', 'fortunalandscape_contact_customizer');
-
-// iFrame HTML Temizleme/İzin Verme Fonksiyonu
-function fortunalandscape_sanitize_iframe($input) {
-    return wp_kses($input, array(
-        'iframe' => array(
-            'src'             => true,
-            'width'           => true,
-            'height'          => true,
-            'frameborder'     => true,
-            'style'           => true,
-            'allowfullscreen' => true,
-            'loading'         => true,
-            'referrerpolicy'  => true,
-        ),
-    ));
-}
-/* ==========================================================================
-   HEADER & MENÜ AYARLARI
-   ========================================================================== */
-
-function fortunalandscape_header_setup() {
-    // Dinamik Title Desteği
-    add_theme_support('title-tag');
-
-    // Özel Logo Desteği
-    add_theme_support('custom-logo', array(
-        'height'      => 100,
-        'width'       => 100,
-        'flex-height' => true,
-        'flex-width'  => true,
-    ));
-
-    // Ana Menü Konumunu Tanımla
-    register_nav_menus(array(
-        'primary-menu' => __('Ana Navigasyon Menüsü', 'fortunalandscape'),
-    ));
-}
-add_action('after_setup_theme', 'fortunalandscape_header_setup');
-
-// Header Özelleştirici Ayarları (Preloader Switch)
-function fortunalandscape_header_customizer($wp_customize) {
-    $wp_customize->add_section('header_section', array(
-        'title'    => __('Header & Preloader Ayarları', 'fortunalandscape'),
-        'priority' => 10,
-    ));
-
-    // Preloader Göster/Gizle
-    $wp_customize->add_setting('show_preloader', array(
-        'default'           => true,
-        'sanitize_callback' => 'fortunalandscape_sanitize_checkbox',
-    ));
-    $wp_customize->add_control('show_preloader', array(
-        'label'    => __('Yükleme Ekranını (Preloader) Aktif Et', 'fortunalandscape'),
-        'section'  => 'header_section',
-        'type'     => 'checkbox',
-    ));
-}
-add_action('customize_register', 'fortunalandscape_header_customizer');
-/* ==========================================================================
-   FOOTER MENÜ KAYDI & ÖZELLEŞTİRİCİ AYARLARI
-   ========================================================================== */
-
-function fortunalandscape_footer_menu_setup() {
-    // Footer için menü konumu tanımla
-    register_nav_menus(array(
-        'footer-menu' => __('Footer Hızlı Menü', 'fortunalandscape'),
-    ));
-}
-add_action('after_setup_theme', 'fortunalandscape_footer_menu_setup');
-
-// Existing fortunalandscape_footer_customizer fonksiyonunuzun içine veya altına ekleyebilirsiniz:
-function fortunalandscape_footer_menu_customizer($wp_customize) {
-    
-    // Footer Menü Göster/Gizle Switch
-    $wp_customize->add_setting('show_footer_nav', array(
-        'default'           => true,
-        'sanitize_callback' => 'fortunalandscape_sanitize_checkbox',
-    ));
-    $wp_customize->add_control('show_footer_nav', array(
-        'label'    => __('Footer Hızlı Menüyü Göster', 'fortunalandscape'),
-        'section'  => 'footer_section', // Mevcut Footer sekmeniz
-        'type'     => 'checkbox',
-        'priority' => 5,
-    ));
-}
-add_action('customize_register', 'fortunalandscape_footer_menu_customizer');
