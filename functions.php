@@ -3,6 +3,7 @@
  * Fortuna Landscape - functions.php
  * Adım 1: Temel Kurulumlar & Hero Ayarları
  * Adım 2: Sol Menüde Projeler CPT & Özel Galeri Yönetimi
+ * Adım 3: Özelleştirici (Customizer) Hizmetler Bölümü
  */
 
 // 1. TEMA KURULUMU VE DESTEKLERİ
@@ -26,21 +27,25 @@ function fortunalandscape_scripts() {
 }
 add_action('wp_enqueue_scripts', 'fortunalandscape_scripts');
 
-// 3. TEMA ÖZELLEŞTİRİCİ (CUSTOMIZER) - HERO BÖLÜMÜ
-function fortunalandscape_hero_customizer($wp_customize) {
+
+/* ==========================================================================
+   3. TEMA ÖZELLEŞTİRİCİ (CUSTOMIZER) - HERO VE HİZMETLER BÖLÜMÜ
+   ========================================================================== */
+
+function fortunalandscape_customizer($wp_customize) {
+    
+    // --- HERO BÖLÜMÜ ---
     $wp_customize->add_section('hero_section', array(
         'title'    => __('Hero (Giriş) Ayarları', 'fortunalandscape'),
         'priority' => 10,
     ));
 
-    // Hero Görsel
     $wp_customize->add_setting('hero_bg_image', array('default' => '', 'sanitize_callback' => 'esc_url_raw'));
     $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'hero_bg_image', array(
         'label'    => __('Hero Arka Plan Resmi', 'fortunalandscape'),
         'section'  => 'hero_section',
     )));
 
-    // Hero Opaklık
     $wp_customize->add_setting('hero_opacity', array('default' => '0.4', 'sanitize_callback' => 'sanitize_text_field'));
     $wp_customize->add_control('hero_opacity', array(
         'label'       => __('Görsel Opaklığı (0.0 Şeffaf - 1.0 Tam Koyu)', 'fortunalandscape'),
@@ -49,22 +54,70 @@ function fortunalandscape_hero_customizer($wp_customize) {
         'input_attrs' => array('min' => 0, 'max' => 1, 'step' => 0.1),
     ));
 
-    // Hero Başlık
     $wp_customize->add_setting('hero_title', array('default' => 'Doğayla Uyumlu, Estetik Mekanlar Tasarlıyoruz.', 'sanitize_callback' => 'sanitize_text_field'));
     $wp_customize->add_control('hero_title', array('label' => __('Hero Başlık', 'fortunalandscape'), 'section' => 'hero_section', 'type' => 'text'));
 
-    // Hero Alt Metin
     $wp_customize->add_setting('hero_desc', array('default' => 'Fortuna Landscape olarak, yaşam alanlarınızı yeşille buluşturuyoruz.', 'sanitize_callback' => 'sanitize_textarea_field'));
     $wp_customize->add_control('hero_desc', array('label' => __('Hero Alt Metin (Açıklama)', 'fortunalandscape'), 'section' => 'hero_section', 'type' => 'textarea'));
+
+
+    // --- HİZMETLER BÖLÜMÜ ---
+    $wp_customize->add_section('services_section', array(
+        'title'    => __('Hizmetler Bölümü Ayarları', 'fortunalandscape'),
+        'priority' => 11,
+    ));
+
+    // Genel Bölüm Başlığı & Açıklaması
+    $wp_customize->add_setting('services_main_title', array('default' => 'Hizmetlerimiz', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('services_main_title', array('label' => __('Genel Bölüm Başlığı', 'fortunalandscape'), 'section' => 'services_section', 'type' => 'text'));
+
+    $wp_customize->add_setting('services_main_desc', array('default' => 'Peyzaj ve mimari alanında sunduğumuz profesyonel çözümler.', 'sanitize_callback' => 'sanitize_textarea_field'));
+    $wp_customize->add_control('services_main_desc', array('label' => __('Genel Bölüm Açıklaması', 'fortunalandscape'), 'section' => 'services_section', 'type' => 'textarea'));
+
+    // 3 Adet Örnek Hizmet Kartı
+    for ($i = 1; $i <= 3; $i++) {
+        // İkon Sınıfı (FontAwesome)
+        $wp_customize->add_setting("service_{$i}_icon", array(
+            'default'           => ($i == 1) ? 'fa-solid fa-tree' : (($i == 2) ? 'fa-solid fa-compass-drafting' : 'fa-solid fa-seedling'),
+            'sanitize_callback' => 'sanitize_text_field'
+        ));
+        $wp_customize->add_control("service_{$i}_icon", array(
+            'label'       => __("Hizmet {$i} - FontAwesome İkon Kodu", 'fortunalandscape'),
+            'description' => __('Örn: fa-solid fa-tree (FontAwesome sınıfları)', 'fortunalandscape'),
+            'section'     => 'services_section',
+            'type'        => 'text',
+        ));
+
+        // Hizmet Başlığı
+        $wp_customize->add_setting("service_{$i}_title", array(
+            'default'           => "Hizmet Başlığı {$i}",
+            'sanitize_callback' => 'sanitize_text_field'
+        ));
+        $wp_customize->add_control("service_{$i}_title", array(
+            'label'   => __("Hizmet {$i} - Başlık", 'fortunalandscape'),
+            'section' => 'services_section',
+            'type'    => 'text',
+        ));
+
+        // Hizmet Açıklaması
+        $wp_customize->add_setting("service_{$i}_desc", array(
+            'default'           => "Bu alana hizmet {$i} ile ilgili kısa açıklama metni gelecektir.",
+            'sanitize_callback' => 'sanitize_textarea_field'
+        ));
+        $wp_customize->add_control("service_{$i}_desc", array(
+            'label'   => __("Hizmet {$i} - Alt Metin (Açıklama)", 'fortunalandscape'),
+            'section' => 'services_section',
+            'type'    => 'textarea',
+        ));
+    }
 }
-add_action('customize_register', 'fortunalandscape_hero_customizer');
+add_action('customize_register', 'fortunalandscape_customizer');
 
 
 /* ==========================================================================
    4. SOL MENÜYE "PROJELER" EKLEME & ÖZEL GALERİ YÖNETİMİ
    ========================================================================== */
 
-// A) Projeler CPT Tanımlama
 function fortunalandscape_register_projects_cpt() {
     $labels = array(
         'name'               => 'Projeler',
@@ -85,8 +138,8 @@ function fortunalandscape_register_projects_cpt() {
         'public'              => true,
         'has_archive'         => false,
         'menu_position'       => 5,
-        'menu_icon'           => 'dashicons-portfolio', // Çanta İkonu
-        'supports'            => array('title', 'thumbnail'), // Başlık ve Kapak Fotoğrafı
+        'menu_icon'           => 'dashicons-portfolio',
+        'supports'            => array('title', 'thumbnail'),
         'show_in_rest'        => false,
     );
 
@@ -94,22 +147,11 @@ function fortunalandscape_register_projects_cpt() {
 }
 add_action('init', 'fortunalandscape_register_projects_cpt');
 
-
-// B) Proje Düzenleme Sayfasına "Proje Galerisi (Çoklu Fotoğraf)" Kutusu Ekleme
 function fortunalandscape_add_gallery_metabox() {
-    add_meta_box(
-        'project_gallery_box',
-        'Proje Galeri Fotoğrafları',
-        'fortunalandscape_gallery_metabox_callback',
-        'projeler',
-        'normal',
-        'high'
-    );
+    add_meta_box('project_gallery_box', 'Proje Galeri Fotoğrafları', 'fortunalandscape_gallery_metabox_callback', 'projeler', 'normal', 'high');
 }
 add_action('add_meta_boxes', 'fortunalandscape_add_gallery_metabox');
 
-
-// C) Galeri Kutusunun HTML ve JS Kodları (Önizlemeli)
 function fortunalandscape_gallery_metabox_callback($post) {
     wp_nonce_field('project_gallery_save', 'project_gallery_nonce');
     $gallery_ids = get_post_meta($post->ID, '_project_gallery_ids', true);
@@ -135,28 +177,20 @@ function fortunalandscape_gallery_metabox_callback($post) {
         <button type="button" class="button button-primary" id="add_project_gallery_images">Galeriye Fotoğraf Ekle / Düzenle</button>
     </div>
 
-    <!-- Admin Paneli Galeri Yönetimi Scripti -->
     <script>
     jQuery(document).ready(function($){
         var frame;
         $('#add_project_gallery_images').on('click', function(e){
             e.preventDefault();
-            
-            if (frame) {
-                frame.open();
-                return;
-            }
-            
+            if (frame) { frame.open(); return; }
             frame = wp.media({
                 title: 'Proje Galeri Fotoğraflarını Seçin',
                 button: { text: 'Seçilenleri Galeriye Ekle' },
                 multiple: true
             });
-
             frame.on('select', function(){
                 var selection = frame.state().get('selection');
                 var ids = $('#project_gallery_ids').val() ? $('#project_gallery_ids').val().split(',') : [];
-                
                 selection.map(function(attachment){
                     attachment = attachment.toJSON();
                     if($.inArray(attachment.id.toString(), ids) === -1){
@@ -170,23 +204,16 @@ function fortunalandscape_gallery_metabox_callback($post) {
                         );
                     }
                 });
-                
                 $('#project_gallery_ids').val(ids.join(','));
             });
-
             frame.open();
         });
 
-        // Görsel Silme İşlemi
         $(document).on('click', '.remove-gallery-img', function(){
             var $li = $(this).closest('li');
             var removeId = $li.data('id').toString();
             var ids = $('#project_gallery_ids').val().split(',');
-            
-            ids = ids.filter(function(id){
-                return id !== removeId;
-            });
-            
+            ids = ids.filter(function(id){ return id !== removeId; });
             $('#project_gallery_ids').val(ids.join(','));
             $li.remove();
         });
@@ -195,19 +222,10 @@ function fortunalandscape_gallery_metabox_callback($post) {
     <?php
 }
 
-
-// D) Galeri Görsellerini Veritabanına Kaydetme
 function fortunalandscape_save_gallery_metabox($post_id) {
-    if (!isset($_POST['project_gallery_nonce']) || !wp_verify_nonce($_POST['project_gallery_nonce'], 'project_gallery_save')) {
-        return;
-    }
-    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
-        return;
-    }
-    if (!current_user_can('edit_post', $post_id)) {
-        return;
-    }
-
+    if (!isset($_POST['project_gallery_nonce']) || !wp_verify_nonce($_POST['project_gallery_nonce'], 'project_gallery_save')) return;
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+    if (!current_user_can('edit_post', $post_id)) return;
     if (isset($_POST['project_gallery_ids'])) {
         update_post_meta($post_id, '_project_gallery_ids', sanitize_text_field($_POST['project_gallery_ids']));
     }
