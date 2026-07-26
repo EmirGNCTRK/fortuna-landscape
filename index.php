@@ -118,7 +118,7 @@ $hero_desc    = get_theme_mod('hero_desc', 'Fortuna Landscape olarak, yaşam ala
     </div>
 </div>
 
-<!-- Hizmetler Bölümü (Dönen Slider - Özelleştiriciye Bağlı) -->
+<!-- Hizmetler Bölümü (Sol Menüden Eklenen Sınırsız Hizmetler) -->
 <?php 
 $services_title = get_theme_mod('services_main_title', 'Hizmetlerimiz');
 ?>
@@ -130,27 +130,39 @@ $services_title = get_theme_mod('services_main_title', 'Hizmetlerimiz');
             <button class="slider-btn prev-btn" id="prevBtn">&#10094;</button>
 
             <div class="services-track" id="servicesTrack">
-                <?php 
-                for ($i = 1; $i <= 3; $i++) :
-                    $icon  = get_theme_mod("service_{$i}_icon", ($i == 1 ? 'fa-solid fa-tree' : ($i == 2 ? 'fa-solid fa-compass-drafting' : 'fa-solid fa-seedling')));
-                    $title = get_theme_mod("service_{$i}_title", "Hizmet Başlığı {$i}");
-                    $desc  = get_theme_mod("service_{$i}_desc", "Bu alana hizmet {$i} ile ilgili kısa açıklama metni gelecektir.");
+                <?php
+                $services_query = new WP_Query(array(
+                    'post_type'      => 'hizmetler',
+                    'posts_per_page' => -1,
+                    'orderby'        => 'date',
+                    'order'          => 'ASC'
+                ));
+
+                if ($services_query->have_posts()) :
+                    while ($services_query->have_posts()) : $services_query->the_post();
+                        $icon = get_post_meta(get_the_ID(), '_service_icon', true);
+                        if (!$icon) $icon = 'fa-solid fa-tree';
                 ?>
                     <div class="service-card">
                         <div class="icon-box">
                             <i class="<?php echo esc_attr($icon); ?>"></i>
                         </div>
-                        <h4><?php echo esc_html($title); ?></h4>
-                        <p><?php echo esc_html($desc); ?></p>
+                        <h4><?php the_title(); ?></h4>
+                        <p><?php echo esc_html(get_the_excerpt() ? get_the_excerpt() : wp_strip_all_tags(get_the_content())); ?></p>
                     </div>
-                <?php endfor; ?>
+                <?php 
+                    endwhile;
+                    wp_reset_postdata();
+                else :
+                ?>
+                    <p style="text-align: center; width: 100%;">Henüz hizmet eklenmemiş.</p>
+                <?php endif; ?>
             </div>
 
             <button class="slider-btn next-btn" id="nextBtn">&#10095;</button>
         </div>
     </div>
 </section>
-
 <!-- Neden Bizi Tercih Etmelisiniz? Bölümü -->
 <section id="neden-biz" class="why-us">
     <div class="container">
