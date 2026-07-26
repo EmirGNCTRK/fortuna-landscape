@@ -69,7 +69,7 @@ add_action('customize_register', 'fortunalandscape_customizer');
 
 
 /* ==========================================================================
-   4. SOL MENÜYE "HİZMETLER" CPT VE GÖRSEL İKON SEÇİCİ
+   4. SOL MENÜYE "HİZMETLER" CPT VE LINK/INPUT İLE İKON SEÇİCİ
    ========================================================================== */
 
 function fortunalandscape_register_services_cpt() {
@@ -87,68 +87,51 @@ function fortunalandscape_register_services_cpt() {
         'public'        => true,
         'menu_position' => 6,
         'menu_icon'     => 'dashicons-hammer',
-        'supports'      => array('title', 'editor'), // Title = Başlık, Editor = Alt Metin
+        'supports'      => array('title', 'editor'),
     );
 
     register_post_type('hizmetler', $args);
 }
 add_action('init', 'fortunalandscape_register_services_cpt');
 
-// Hizmet Düzenleme Sayfasına İkon Seçim Kutusu Ekleme
+// Hizmet Düzenleme Sayfasına İkon Metin Kutusu ve Link Ekleme
 function fortunalandscape_add_service_icon_box() {
-    add_meta_box('service_icon_box', 'Hizmet İkonu Seçin', 'fortunalandscape_service_icon_callback', 'hizmetler', 'side', 'high');
+    add_meta_box('service_icon_box', 'Hizmet İkonu', 'fortunalandscape_service_icon_callback', 'hizmetler', 'side', 'high');
 }
 add_action('add_meta_boxes', 'fortunalandscape_add_service_icon_box');
 
-// İkon Seçim Kutusu HTML
+// İkon Kutusu HTML & JS
 function fortunalandscape_service_icon_callback($post) {
     wp_nonce_field('service_icon_save', 'service_icon_nonce');
     $current_icon = get_post_meta($post->ID, '_service_icon', true);
     if(!$current_icon) $current_icon = 'fa-solid fa-tree';
-
-    $icons = array(
-        'fa-solid fa-tree' => 'Ağaç',
-        'fa-solid fa-leaf' => 'Yaprak',
-        'fa-solid fa-seedling' => 'Fide',
-        'fa-solid fa-compass-drafting' => 'Çizim/Tasarım',
-        'fa-solid fa-scissors' => 'Makas/Budama',
-        'fa-solid fa-faucet-drip' => 'Sulama',
-        'fa-solid fa-droplet' => 'Su Damlası',
-        'fa-solid fa-lightbulb' => 'Aydınlatma',
-        'fa-solid fa-sun' => 'Güneş',
-        'fa-solid fa-house-chimney-window' => 'Ev/Bahçe',
-        'fa-solid fa-shield-halved' => 'Güvenlik',
-        'fa-solid fa-layer-group' => 'Uygulama/Kaplama'
-    );
     ?>
-    <!-- FontAwesome Admin Desteği -->
+    <!-- FontAwesome Admin Önizleme Desteği -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <p><strong>Seçili İkon Önizlemesi:</strong></p>
-    <div id="icon-preview" style="font-size: 30px; text-align: center; margin-bottom: 10px; padding: 10px; background: #f0f0f1; border-radius: 5px;">
-        <i class="<?php echo esc_attr($current_icon); ?>"></i>
+    <div style="margin-bottom: 12px;">
+        <a href="https://fontawesome.com/search?o=r&m=free" target="_blank" class="button button-secondary" style="width: 100%; text-align: center; display: inline-block;">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> FontAwesome İkon Bul
+        </a>
     </div>
 
-    <input type="hidden" name="service_icon" id="service_icon_input" value="<?php echo esc_attr($current_icon); ?>">
+    <p style="margin-bottom: 5px;"><strong>İkon Kodu:</strong></p>
+    <input type="text" name="service_icon" id="service_icon_input" value="<?php echo esc_attr($current_icon); ?>" style="width: 100%; margin-bottom: 10px;" placeholder="Örn: fa-solid fa-leaf">
 
-    <p><strong>Bir İkon Seçin:</strong></p>
-    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; max-height: 180px; overflow-y: auto; padding: 5px; border: 1px solid #ccc; background: #fff;">
-        <?php foreach ($icons as $class => $name): ?>
-            <div class="icon-option" data-icon="<?php echo esc_attr($class); ?>" title="<?php echo esc_attr($name); ?>" style="padding: 8px; text-align: center; border: 1px solid #ddd; cursor: pointer; border-radius: 4px; <?php echo ($current_icon == $class) ? 'background: #007cba; color: #fff;' : ''; ?>">
-                <i class="<?php echo esc_attr($class); ?>" style="font-size: 18px;"></i>
-            </div>
-        <?php endforeach; ?>
+    <p style="margin-bottom: 5px;"><strong>Canlı Önizleme:</strong></p>
+    <div id="icon-preview" style="font-size: 32px; text-align: center; padding: 15px; background: #f0f0f1; border: 1px solid #ccc; border-radius: 6px; color: #2c3338;">
+        <i class="<?php echo esc_attr($current_icon); ?>"></i>
     </div>
 
     <script>
     jQuery(document).ready(function($){
-        $('.icon-option').on('click', function(){
-            var selectedIcon = $(this).data('icon');
-            $('#service_icon_input').val(selectedIcon);
-            $('#icon-preview i').attr('class', selectedIcon);
-            
-            $('.icon-option').css({'background': '#fff', 'color': '#333'});
-            $(this).css({'background': '#007cba', 'color': '#fff'});
+        // Kullanıcı koda yazıp değiştikçe veya tuşa bastıkça önizlemeyi anında güncelle
+        $('#service_icon_input').on('input change', function(){
+            var iconClass = $(this).val().trim();
+            if(iconClass === '') {
+                iconClass = 'fa-solid fa-question';
+            }
+            $('#icon-preview i').attr('class', iconClass);
         });
     });
     </script>
