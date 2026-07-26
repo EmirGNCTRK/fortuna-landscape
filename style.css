@@ -268,48 +268,107 @@ nav a:hover:not(.cta-button) {
     font-weight: 300;
 }
 
-/* --- Hizmetler Bölümü Stilleri --- */
+/* --- Yana Kayan Hizmetler Bölümü Stilleri --- */
 .services {
-    padding: 100px 0;
+    padding: 80px 0;
     background-color: var(--light-color);
 }
 
-.services-wrapper {
+.slider-container {
+    position: relative;
     display: flex;
-    justify-content: space-around;
-    gap: 30px;
-    text-align: center;
+    align-items: center;
+    width: 100%;
 }
 
-.service-item {
+.services-track {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 15px 5px;
+    scrollbar-width: none; /* Firefox kaydırma çubuğunu gizler */
+    width: 100%;
+}
+
+/* Chrome, Safari ve Opera için kaydırma çubuğunu gizle */
+.services-track::-webkit-scrollbar {
+    display: none;
+}
+
+/* KART BOYUTLANDIRMALARI */
+.service-card {
+    /* Masaüstü: Tam 3 kart sığacak şekilde genişlik (gap düşülerek) */
+    flex: 0 0 calc((100% - 40px) / 3); 
+    max-width: calc((100% - 40px) / 3);
     background-color: var(--white);
-    padding: 40px;
-    border-radius: 10px;
-    flex: 1;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    padding: 30px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     border-bottom: 4px solid transparent;
+    transition: var(--transition);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
-.service-item:hover {
+.service-card:hover {
     border-bottom: 4px solid var(--primary-color);
     transform: translateY(-5px);
 }
 
-.service-item .icon {
-    font-size: 3rem;
-    display: block;
-    margin-bottom: 25px;
-    color: var(--accent-color);
+.icon-box {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(121, 163, 73, 0.15); /* Fıstık yeşilinin hafif şeffaf tonu */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
 }
 
-.service-item h4 {
-    margin-bottom: 15px;
+.service-card h4 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
     color: var(--secondary-color);
 }
 
-.service-item p {
+.service-card p {
     color: var(--text-color-muted);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Ok Butonları */
+.slider-btn {
+    background-color: var(--white);
+    color: var(--secondary-color);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    position: absolute;
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+}
+
+.slider-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.prev-btn {
+    left: -15px;
+}
+
+.next-btn {
+    right: -15px;
 }
 
 /* --- Hakkımızda Bölümü Stilleri --- */
@@ -417,10 +476,14 @@ footer .container {
     color: var(--primary-color);
 }
 
-/* --- Mobil Uyumluluk (Responsive) --- */
+/* --- Mobil ve Medya Uyumluluğu (Responsive) --- */
 @media (max-width: 992px) {
     .hero h2 { font-size: 2.8rem; }
     .about-content { flex-direction: column; }
+    .service-card {
+        flex: 0 0 calc((100% - 20px) / 2); /* Tablette 2 kart göster */
+        max-width: calc((100% - 20px) / 2);
+    }
 }
 
 @media (max-width: 768px) {
@@ -429,5 +492,107 @@ footer .container {
     .hero { text-align: center; padding-top: 120px; }
     .hero h2 { font-size: 2.2rem; }
     .section-title { font-size: 2.2rem; }
-    .services-wrapper { flex-direction: column; gap: 20px; }
+}
+
+@media (max-width: 600px) {
+    .service-card {
+        flex: 0 0 100%; /* Mobilde tam ekrana 1 kart oturur, taşma yapmaz */
+        max-width: 100%;
+    }
+    .prev-btn { left: -5px; }
+    .next-btn { right: -5px; }
+}
+/* --- Neden Bizi Tercih Etmelisiniz? Stilleri --- */
+.why-us {
+    padding: 100px 0;
+    background-color: var(--white);
+}
+
+.why-us-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.why-us-card {
+    background-color: var(--light-color);
+    padding: 40px 30px;
+    border-radius: 12px;
+    position: relative;
+    transition: var(--transition);
+    border-top: 4px solid var(--primary-color);
+}
+
+.why-us-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.why-us-number {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+    opacity: 0.8;
+}
+
+.why-us-card h4 {
+    font-size: 1.3rem;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+}
+
+.why-us-card p {
+    color: var(--text-color-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Alt Çağrı Metni Kutusu */
+.why-us-cta {
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    color: var(--white);
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.why-us-cta p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 25px;
+    font-weight: 300;
+}
+
+.why-us-cta .btn {
+    background-color: var(--white);
+    color: var(--secondary-color);
+    font-weight: 700;
+}
+
+.why-us-cta .btn:hover {
+    background-color: var(--accent-color);
+    color: var(--white);
+}
+
+/* Responsive Düzenlemeler */
+@media (max-width: 992px) {
+    .why-us-grid {
+        grid-template-columns: repeat(1, 1fr); /* Tablet ve mobilde alt alta dizilir */
+        gap: 25px;
+    }
+}
+
+@media (max-width: 600px) {
+    .why-us-cta {
+        padding: 25px 20px;
+    }
+    .why-us-cta p {
+        font-size: 1rem;
+    }
 }

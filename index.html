@@ -78,41 +78,93 @@
     <section id="hizmetler" class="services">
         <div class="container">
             <h3 class="section-title">Hizmetlerimiz</h3>
-            <div class="services-wrapper">
-                <div class="service-item">
-                    <span class="icon">🌿</span>
-                    <h4>Peyzaj Tasarımı</h4>
-                    <p>Mekan analizi ve 3D görselleştirme ile hayalinizdeki bahçeyi projelendiriyoruz.</p>
+            
+            <div class="slider-container">
+                <button class="slider-btn prev-btn" id="prevBtn">&#10094;</button>
+
+                <div class="services-track" id="servicesTrack">
+                    <!-- 1. Bakım -->
+                    <div class="service-card">
+                        <div class="icon-box">✂️</div>
+                        <h4>Bakım</h4>
+                        <p>Bitkilerinizin sağlığını koruyacak düzenli bakım ve budama hizmetleri sunuyoruz.</p>
+                    </div>
+
+                    <!-- 2. Uygulama -->
+                    <div class="service-card">
+                        <div class="icon-box">🧱</div>
+                        <h4>Uygulama</h4>
+                        <p>Projelerinizi planladığımız gibi, titizlikle ve zamanında hayata geçiriyoruz.</p>
+                    </div>
+
+                    <!-- 3. Tasarım -->
+                    <div class="service-card">
+                        <div class="icon-box">📐</div>
+                        <h4>Tasarım</h4>
+                        <p>Estetik ve fonksiyonelliği birleştiren özgün peyzaj tasarımları oluşturuyoruz.</p>
+                    </div>
+
+                    <!-- 4. Sulama Sistemleri -->
+                    <div class="service-card">
+                        <div class="icon-box">🌊</div>
+                        <h4>Sulama Sistemleri</h4>
+                        <p>Verimli, otomatik ve çevre dostu sulama çözümleri sağlıyoruz.</p>
+                    </div>
+
+                    <!-- 5. Aydınlatma Çözümleri -->
+                    <div class="service-card">
+                        <div class="icon-box">💡</div>
+                        <h4>Aydınlatma Çözümleri</h4>
+                        <p>Dış mekanlarınızı güzelleştiren ve güvenliği artıran aydınlatma tasarımları yapıyoruz.</p>
+                    </div>
+
+                    <!-- 6. Sürdürülebilir Peyzaj -->
+                    <div class="service-card">
+                        <div class="icon-box">🍃</div>
+                        <h4>Sürdürülebilir Peyzaj</h4>
+                        <p>Doğayla uyumlu, uzun ömürlü ve çevre dostu peyzaj çözümleri sunuyoruz.</p>
+                    </div>
                 </div>
-                <div class="service-item">
-                    <span class="icon">🛠️</span>
-                    <h4>Uygulama & Yönetim</h4>
-                    <p>Projelerinizi profesyonel ekiplerimizle titizlikle hayata geçiriyoruz.</p>
-                </div>
-                <div class="service-item">
-                    <span class="icon">💧</span>
-                    <h4>Sulama Sistemleri</h4>
-                    <p>Sürdürülebilir ve verimli sulama çözümleri sunuyoruz.</p>
-                </div>
+
+                <button class="slider-btn next-btn" id="nextBtn">&#10095;</button>
             </div>
         </div>
     </section>
-
-    <!-- Hakkımızda Bölümü -->
-    <section id="hakimizda" class="about">
+ <!-- Neden Bizi Tercih Etmelisiniz? Bölümü -->
+    <section id="neden-biz" class="why-us">
         <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h3 class="section-title">Hakkımızda</h3>
-                    <p>Fortuna Landscape olarak, [Kuruluş Yılı] yılından beri doğayla insanı bir araya getirme tutkusuyla çalışıyoruz. Deneyimli peyzaj mimarlarımız ve uygulama ekiplerimizle, estetik, işlevsel ve sürdürülebilir mekanlar tasarlayarak yaşam kalitenizi artırmayı hedefliyoruz. Her projeyi benzersiz bir hikaye olarak görüyor ve detaylara önem veriyoruz.</p>
+            <h3 class="section-title">Neden Bizi Tercih Etmelisiniz?</h3>
+            
+            <div class="why-us-grid">
+                <!-- 1. Vurgu: Özgün Tasarım & Profesyonellik -->
+                <div class="why-us-card">
+                    <div class="why-us-number">01</div>
+                    <h4>Özgün ve İşlevsel Tasarımlar</h4>
+                    <p>Müşterilerimize estetik, işlevsellik ve sürdürülebilirliği bir araya getiren özgün tasarım çözümleri sunuyoruz. Her projeye titizlikle yaklaşarak, ihtiyaçlara özel ve profesyonel çözümler geliştiriyoruz.</p>
                 </div>
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1596706173167-735955635399?q=80&w=600&auto=format&fit=crop" alt="Fortuna Landscape Ekibi">
+
+                <!-- 2. Vurgu: Kalite & Zamanında Teslim -->
+                <div class="why-us-card">
+                    <div class="why-us-number">02</div>
+                    <h4>Kalite ve Güven</h4>
+                    <p>Kaliteli malzeme seçimi, zamanında teslim anlayışı ve müşteri memnuniyetini esas alan hizmet yaklaşımımızla güvenilir projelere imza atıyoruz.</p>
                 </div>
+
+                <!-- 3. Vurgu: Sürdürülebilirlik & Gelecek -->
+                <div class="why-us-card">
+                    <div class="why-us-number">03</div>
+                    <h4>Geleceğe Değer Katan Yaklaşım</h4>
+                    <p>Doğaya duyarlı ve sürdürülebilir tasarım ilkelerini benimseyerek, yalnızca bugünün ihtiyaçlarını karşılayan değil, geleceğe değer katan yaşam alanları oluşturmayı hedefliyoruz.</p>
+                </div>
+            </div>
+
+            <!-- Çağrı Metni (CTA) -->
+            <div class="why-us-cta">
+                <p>Hayal ettiğiniz mekânları estetik ve fonksiyonel çözümlerle gerçeğe dönüştürmek için yanınızdayız. Siz de yaşam alanlarınızı profesyonel bir dokunuşla yeniden şekillendirmek için bizimle iletişime geçebilirsiniz.</p>
+                <a href="#iletisim" class="btn">Bizimle İletişime Geçin</a>
             </div>
         </div>
     </section>
-
     <!-- İletişim Bölümü -->
     <section id="iletisim" class="contact">
         <div class="container">

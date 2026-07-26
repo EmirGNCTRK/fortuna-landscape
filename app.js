@@ -31,3 +31,71 @@ if (contactForm) {
         contactForm.reset();
     });
 }
+// --- Hizmetler Otomatik & Sonsuz Slider ---
+const track = document.getElementById('servicesTrack');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+if (track && prevBtn && nextBtn) {
+    let autoScrollInterval;
+    const scrollSpeed = 3000; // Kaç milisaniyede bir kaysın (3 saniye)
+
+    // Sağ tarafa kaydırma fonksiyonu
+    const scrollNext = () => {
+        const card = track.querySelector('.service-card');
+        const cardWidth = card.offsetWidth + 20; // Kart genişliği + gap (20px)
+        
+        // Eğer sona ulaştıysa başa dön, ulaşmadıysa sağa kay
+        if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 10) {
+            track.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+            track.scrollBy({ left: cardWidth, behavior: 'smooth' });
+        }
+    };
+
+    // Sol tarafa kaydırma fonksiyonu
+    const scrollPrev = () => {
+        const card = track.querySelector('.service-card');
+        const cardWidth = card.offsetWidth + 20;
+
+        if (track.scrollLeft <= 0) {
+            track.scrollTo({ left: track.scrollWidth, behavior: 'smooth' });
+        } else {
+            track.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+        }
+    };
+
+    // Otomatik Kaydırmayı Başlatırma
+    const startAutoScroll = () => {
+        autoScrollInterval = setInterval(scrollNext, scrollSpeed);
+    };
+
+    // Otomatik Kaydırmayı Durdurma
+    const stopAutoScroll = () => {
+        clearInterval(autoScrollInterval);
+    };
+
+    // Buton Tıklamaları
+    nextBtn.addEventListener('click', () => {
+        stopAutoScroll();
+        scrollNext();
+        startAutoScroll();
+    });
+
+    prevBtn.addEventListener('click', () => {
+        stopAutoScroll();
+        scrollPrev();
+        startAutoScroll();
+    });
+
+    // Mouse Üzerine Gelince Durdur / Ayrılınca Başlat
+    track.addEventListener('mouseenter', stopAutoScroll);
+    track.addEventListener('mouseleave', startAutoScroll);
+
+    // Dokunmatik cihazlar için (Mobil)
+    track.addEventListener('touchstart', stopAutoScroll);
+    track.addEventListener('touchend', startAutoScroll);
+
+    // Başlangıçta otomatği çalıştır
+    startAutoScroll();
+}
