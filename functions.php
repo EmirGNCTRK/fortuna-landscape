@@ -543,3 +543,45 @@ function fortunalandscape_sanitize_iframe($input) {
         ),
     ));
 }
+/* ==========================================================================
+   HEADER & MENÜ AYARLARI
+   ========================================================================== */
+
+function fortunalandscape_header_setup() {
+    // Dinamik Title Desteği
+    add_theme_support('title-tag');
+
+    // Özel Logo Desteği
+    add_theme_support('custom-logo', array(
+        'height'      => 100,
+        'width'       => 100,
+        'flex-height' => true,
+        'flex-width'  => true,
+    ));
+
+    // Ana Menü Konumunu Tanımla
+    register_nav_menus(array(
+        'primary-menu' => __('Ana Navigasyon Menüsü', 'fortunalandscape'),
+    ));
+}
+add_action('after_setup_theme', 'fortunalandscape_header_setup');
+
+// Header Özelleştirici Ayarları (Preloader Switch)
+function fortunalandscape_header_customizer($wp_customize) {
+    $wp_customize->add_section('header_section', array(
+        'title'    => __('Header & Preloader Ayarları', 'fortunalandscape'),
+        'priority' => 10,
+    ));
+
+    // Preloader Göster/Gizle
+    $wp_customize->add_setting('show_preloader', array(
+        'default'           => true,
+        'sanitize_callback' => 'fortunalandscape_sanitize_checkbox',
+    ));
+    $wp_customize->add_control('show_preloader', array(
+        'label'    => __('Yükleme Ekranını (Preloader) Aktif Et', 'fortunalandscape'),
+        'section'  => 'header_section',
+        'type'     => 'checkbox',
+    ));
+}
+add_action('customize_register', 'fortunalandscape_header_customizer');
