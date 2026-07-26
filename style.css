@@ -1370,3 +1370,51 @@ footer {
         justify-content: center;
     }
 }
+/* Neden Bizi Tercih Etmelisiniz (Why Us) Bölümü */
+.why-us {
+    padding: 80px 0;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.why-us .section-subtitle {
+    max-width: 600px;
+    margin: -20px auto 40px auto;
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.why-us-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.why-us-card {
+    background: #ffffff;
+    padding: 35px 25px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.why-us-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.why-us-card h4 {
+    font-size: 1.25rem;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.why-us-card p {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
