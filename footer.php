@@ -31,24 +31,27 @@
             </div>
 
             <!-- Hızlı Menü Linkleri -->
+            <?php if (get_theme_mod('show_footer_nav', true)) : ?>
             <div class="footer-nav">
                 <?php
                 if (has_nav_menu('footer-menu')) {
                     wp_nav_menu(array(
                         'theme_location' => 'footer-menu',
                         'container'      => false,
-                        'depth'          => 1,
+                        'depth'          => 1, // Footer menüsü genelde tek seviye olur
+                        'fallback_cb'    => false,
                     ));
                 } else {
-                    // Varsayılan Statik Menü (Eğer panelden menü atanmamışsa)
+                    // Panelden henüz menü atanmamışsa görünecek varsayılan yedek linkler
                     echo '<ul>';
                     echo '<li><a href="' . esc_url(home_url('/')) . '">Anasayfa</a></li>';
-                    echo '<li><a href="' . esc_url(home_url('/hakkimizda.php')) . '">Hakkımızda</a></li>';
-                    echo '<li><a href="' . esc_url(home_url('/contact.php')) . '">İletişim</a></li>';
+                    echo '<li><a href="' . esc_url(home_url('/hakkimizda/')) . '">Hakkımızda</a></li>';
+                    echo '<li><a href="' . esc_url(home_url('/iletisim/')) . '">İletişim</a></li>';
                     echo '</ul>';
                 }
                 ?>
             </div>
+            <?php endif; ?>
 
             <!-- Sosyal Medya İkon Linkleri -->
             <div class="footer-social">

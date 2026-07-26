@@ -585,3 +585,31 @@ function fortunalandscape_header_customizer($wp_customize) {
     ));
 }
 add_action('customize_register', 'fortunalandscape_header_customizer');
+/* ==========================================================================
+   FOOTER MENÜ KAYDI & ÖZELLEŞTİRİCİ AYARLARI
+   ========================================================================== */
+
+function fortunalandscape_footer_menu_setup() {
+    // Footer için menü konumu tanımla
+    register_nav_menus(array(
+        'footer-menu' => __('Footer Hızlı Menü', 'fortunalandscape'),
+    ));
+}
+add_action('after_setup_theme', 'fortunalandscape_footer_menu_setup');
+
+// Existing fortunalandscape_footer_customizer fonksiyonunuzun içine veya altına ekleyebilirsiniz:
+function fortunalandscape_footer_menu_customizer($wp_customize) {
+    
+    // Footer Menü Göster/Gizle Switch
+    $wp_customize->add_setting('show_footer_nav', array(
+        'default'           => true,
+        'sanitize_callback' => 'fortunalandscape_sanitize_checkbox',
+    ));
+    $wp_customize->add_control('show_footer_nav', array(
+        'label'    => __('Footer Hızlı Menüyü Göster', 'fortunalandscape'),
+        'section'  => 'footer_section', // Mevcut Footer sekmeniz
+        'type'     => 'checkbox',
+        'priority' => 5,
+    ));
+}
+add_action('customize_register', 'fortunalandscape_footer_menu_customizer');
